@@ -3,7 +3,7 @@ import { doc, getDoc } from "firebase/firestore/lite";
 import db from "../firebase";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const accountSid = import.meta.env.VITE_ACCOUNT_SID;
 const authToken = import.meta.env.VITE_AUTH_TOKEN;
@@ -105,7 +105,7 @@ const Details = () => {
         }`}
       >
         <img
-          src="/src/assets/images/logo.png"
+          src="images/logo.png"
           width="175"
           alt=""
           className="absolute top-50 left-50"
