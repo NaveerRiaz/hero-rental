@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore/lite';
 import Footer from '../Components/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import db from "../firebase";
 import HeroImage from "/src/assets/images/hero-image-merc.jpg";
 import LuxuryCar from "/src/assets/images/hero-image-merc.png";
@@ -213,9 +213,9 @@ const Home = () => {
                     <img src={logo} width="175" alt="" />
 
                     <ul className={`flex gap-6 ${scroll > 0 ? "text-black" : "text-black"}`}>
-                        <li><a className='hover:text-red-600' href="/">Home</a></li>
-                        <li><a className='hover:text-red-600' href="/about">About Us</a></li>
-                        <li><a className='hover:text-red-600' href="/about">FAQs</a></li>
+                        <li><Link className='hover:text-red-600' to="/">Home</Link></li>
+                        <li><Link className='hover:text-red-600' to="/about">About Us</Link></li>
+                        <li><Link className='hover:text-red-600' to="/about#faqs">FAQs</Link></li>
                         <li><a className='hover:text-red-600' href="#vehicles">Vehicles</a></li>
                     </ul>
 

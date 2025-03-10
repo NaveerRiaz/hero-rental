@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from "/src/assets/images/logo.png"
 import logoInstagram from "/src/assets/images/instagram.svg";
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -20,10 +21,10 @@ const Footer = () => {
                     {/* navigation */}
                     <div className="flex flex-col gap-4 col-span-1 px-8 py-10">
                         <ul className='text-white text-lg space-y-2'>
-                            <li><a className='hover:text-red-500' href="/">Home</a></li>
-                            <li><a className='hover:text-red-500' href="/about">About Us</a></li>
-                            <li><a className='hover:text-red-500' href="/about#faqs">FAQs</a></li>
-                            <li><a className='hover:text-red-500' href="/#vehicles">Vehicles</a></li>
+                        <li><Link className='hover:text-red-600' to="/">Home</Link></li>
+                        <li><Link className='hover:text-red-600' to="/about">About Us</Link></li>
+                        <li><Link className='hover:text-red-600' to="/about#faqs">FAQs</Link></li>
+                        <li><Link className='hover:text-red-600' to="/#vehicles">Vehicles</Link></li>
                         </ul>
                     </div>
 
