@@ -1,30 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../Components/Footer";
 import FAQsCard from "../Components/FAQsCard";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import logo from "/src/assets/images/logo.png";
+import HamburgerMenu from "../Components/HamburgerMenu";
 
 const About = () => {
   const navigate = useNavigate();
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [hash]);
 
   return (
     <>
+
+      <div id="navigation"></div>
+
       {/* navigation bar */}
       <div className="md:flex hidden justify-center py-8 px-16 items-center top-0 fixed w-full z-10 bg-white shadow-xl">
-        <img
-          className="left-10 fixed"
-          src="images/logo.png"
-          width="175"
-          alt=""
-        />
+        <img className="left-10 fixed" src={logo} width="175" alt="" />
 
-        <ul className="flex gap-6 text-black">
+        <ul className="flex gap-12 text-lg font-medium text-black">
           <li>
-            <Link className="hover:text-red-600" to="/">
+            <Link className="hover:text-red-600" to="/#navigation">
               Home
             </Link>
           </li>
           <li>
-            <Link className="hover:text-red-600" to="/about">
+            <Link className="hover:text-red-600" to="/about#navigation">
               About Us
             </Link>
           </li>
@@ -34,12 +44,15 @@ const About = () => {
             </Link>
           </li>
           <li>
-            <Link className="hover:text-red-600" to="/#vehicles">
+            <a className="hover:text-red-600" href="/#vehicles">
               Vehicles
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
+
+              {/* hamburger menu */}
+              <HamburgerMenu />
 
       <div className="flex mx-20 text-black mt-40">
         <div className="flex flex-col w-[80%] gap-8">

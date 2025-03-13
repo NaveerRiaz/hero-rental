@@ -9,7 +9,7 @@ const Footer = () => {
             {/* footer */}
             <div className="w-screen bg-black px-12 justify-between flex flex-col py-4">
 
-                <div className="grid grid-cols-3 gap-8 mt-8">
+                <div className="grid-cols-3 gap-8 mt-8 hidden sm:grid">
                     {/* logo + company description */}
                     <div className="flex flex-col gap-4 col-span-1">
                         <img src={logo} width={175} alt="" />
@@ -21,8 +21,8 @@ const Footer = () => {
                     {/* navigation */}
                     <div className="flex flex-col gap-4 col-span-1 px-8 py-10">
                         <ul className='text-white text-lg space-y-2'>
-                        <li><Link className='hover:text-red-600' to="/">Home</Link></li>
-                        <li><Link className='hover:text-red-600' to="/about">About Us</Link></li>
+                        <li><Link className='hover:text-red-600' to="/#navigation">Home</Link></li>
+                        <li><Link className='hover:text-red-600' to="/about#navigation">About Us</Link></li>
                         <li><Link className='hover:text-red-600' to="/about#faqs">FAQs</Link></li>
                         <li><Link className='hover:text-red-600' to="/#vehicles">Vehicles</Link></li>
                         </ul>
