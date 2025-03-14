@@ -7,12 +7,18 @@ import { Link } from "react-router-dom";
 import logo from "/src/assets/images/logo.png";
 import Footer from "../Components/Footer";
 import HamburgerMenu from "../Components/HamburgerMenu";
+import DatePicker from "react-datepicker";
+import { format } from "date-fns";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const accountSid = import.meta.env.VITE_ACCOUNT_SID;
 const authToken = import.meta.env.VITE_AUTH_TOKEN;
 
 const Details = () => {
   const [scroll, setScroll] = useState(0);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,18 +109,25 @@ const Details = () => {
     e.preventDefault();
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
-    const date_to = document.getElementById("date-to").value;
-    const date_from = document.getElementById("date-from").value;
+    const date_to = endDate ? format(endDate, "dd-MM-yyyy") : null;
+    const date_from = startDate ? format(startDate, "dd-MM-yyyy") : null;
+
+    if (!name || !phone || !date_from || !date_to) {
+      alert("Please fill in all fields");
+      return;
+    }
 
     await sendWhatsAppMessage(name, phone, date_from, date_to);
     e.target.reset();
+    setStartDate(null);
+    setEndDate(null);
   };
 
   return (
     <>
       <div id="navigation"></div>
 
-      <div className="relative w-full h-screen">
+      <div className="relative w-full sm:h-screen">
         {/* navigation bar */}
         <div
           className={`md:flex hidden justify-between py-8 px-16 items-center w-full z-10 ${
@@ -155,12 +168,24 @@ const Details = () => {
             </li>
           </ul>
         </div>
-                {/* hamburger menu */}
-                <HamburgerMenu />
+        {/* hamburger menu */}
+        <HamburgerMenu />
+
+        {/* Whatsapp button */}
+        <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
+          <p className="text-xl max-sm:hidden">How can we help you?</p>
+          <a href="https://wa.me/971561382222" className="">
+            <img
+              src="https://img.icons8.com/color/48/000000/whatsapp.png"
+              alt=""
+              width="75"
+            />
+          </a>
+        </div>
 
         {car ? (
           <>
-            <div className="flex px-20 gap-4 py-4 relative">
+            <div className="flex px-20 gap-4 py-4 relative max-sm:hidden">
               <a href="/" className="text-gray-600 text-lg hover:text-black">
                 Home
               </a>
@@ -174,9 +199,9 @@ const Details = () => {
               </a>
             </div>
 
-            <div className="flex px-20 gap-12">
-              <div className="flex gap-2 h-[500px] w-[60%]">
-                <div className="flex flex-col w-[10%] h-[500px] overflow-y-scroll scrollbar-none">
+            <div className="flex px-20 gap-4 max-sm:flex-col max-sm:px-4 max-sm:my-20">
+              <div className="flex gap-2 h-[500px] w-[60%] max-sm:w-full max-sm:flex-col-reverse max-sm:h-auto">
+                <div className="flex flex-col w-[10%] h-[500px] overflow-y-scroll scrollbar-none max-sm:flex-row max-sm:w-full max-sm:h-[100px] gap-2">
                   {Array.from(car.Car_image).map((item, index) => (
                     <img
                       key={index}
@@ -211,7 +236,7 @@ const Details = () => {
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                  <div className="flex justify-between gap-2 my-2">
+                  <div className="flex justify-between gap-2 my-2 max-sm:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Name*</p>
                       <input
@@ -233,23 +258,25 @@ const Details = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-between gap-2">
+                  <div className="flex justify-between gap-2 max-sm:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Date From*</p>
-                      <input
-                        id="date-from"
-                        required
-                        className="rounded-lg px-2 py-1"
-                        type="date"
+                      <DatePicker
+                        selected={startDate}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="DD/MM/YYYY"
+                        onChange={(date) => setStartDate(date)}
+                        className="rounded-lg px-2 py-1 w-full"
                       />
                     </div>
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Date To*</p>
-                      <input
-                        id="date-to"
-                        required
-                        className="rounded-lg px-2 py-1"
-                        type="date"
+                      <DatePicker
+                        selected={endDate}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="DD/MM/YYYY"
+                        onChange={(date) => setEndDate(date)}
+                        className="rounded-lg px-2 py-1 w-full"
                       />
                     </div>
                   </div>
@@ -293,12 +320,13 @@ const Details = () => {
             </div>
           </>
         ) : (
-          <div className="flex w-full h-full items-center justify-center">
+          <div className="flex w-full h-screen items-center justify-center">
             <p className="text-3xl font-medium">Loading...</p>
           </div>
         )}
       </div>
-      <Footer />
+
+      {car && <Footer />}
     </>
   );
 };

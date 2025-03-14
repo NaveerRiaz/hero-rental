@@ -327,6 +327,21 @@ const Home = () => {
         {/* hamburger menu */}
         <HamburgerMenu />
 
+      {/* Whatsapp button */}
+      <div className="flex gap-4 items-center fixed bottom-10 right-10 z-20 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
+        <p className="text-xl max-sm:hidden">How can we help you?</p>
+      <a
+        href="https://wa.me/971561382222"
+        className=""
+      >
+        <img
+          src="https://img.icons8.com/color/48/000000/whatsapp.png"
+          alt=""
+          width="75"
+          />
+      </a>
+      </div>
+
         {/* <YouTubeLoop videoId="33crJ6BiJ20" startTime={6} endTime={74} /> */}
         <img
           className="w-full top-0 absolute -z-10 opacity h-screen object-cover"

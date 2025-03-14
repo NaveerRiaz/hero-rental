@@ -84,7 +84,7 @@ const HamburgerMenu = () => {
 
         {/* Footer */}
         <footer className="absolute bottom-0 w-full p-4 text-center text-gray-500">
-          <p>&copy; 2022 Rent-A-Car</p>
+          <p>&copy; 2025. All rights reserved</p>
         </footer>
 
         

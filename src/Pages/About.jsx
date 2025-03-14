@@ -20,7 +20,6 @@ const About = () => {
 
   return (
     <>
-
       <div id="navigation"></div>
 
       {/* navigation bar */}
@@ -51,11 +50,26 @@ const About = () => {
         </ul>
       </div>
 
-              {/* hamburger menu */}
-              <HamburgerMenu />
+      {/* hamburger menu */}
+      <HamburgerMenu />
 
-      <div className="flex mx-20 text-black mt-40">
-        <div className="flex flex-col w-[80%] gap-8">
+      {/* Whatsapp button */}
+      <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
+        <p className="text-xl max-sm:hidden">How can we help you?</p>
+      <a
+        href="https://wa.me/971561382222"
+        className=""
+      >
+        <img
+          src="https://img.icons8.com/color/48/000000/whatsapp.png"
+          alt=""
+          width="75"
+          />
+      </a>
+      </div>
+
+      <div className="flex sm:flex-row flex-col-reverse text-black sm:mt-40 mt-12 w-full">
+        <div className="flex flex-col w-full sm:w-[80%] gap-8 px-6 sm:px-12">
           <h1 className="text-5xl font-bold ">About Us</h1>
           <p className="text-lg text-gray-700 font-medium">
             At Hero Car Rental, we are dedicated to providing our customers with
@@ -74,7 +88,7 @@ const About = () => {
           </p>
 
           <div className="px-4 border-left border-l-4 border-l-red-400">
-            <p className="w-[70%] text-gray-700 font-medium text-lg">
+            <p className="sm:w-[70%] w-full text-gray-700 font-medium text-lg">
               At Hero Car Rental, we understand that your time is valuable,
               that's why we offer 24/7 customer support to assist you with any
               questions or concerns you may have. Our team of experts will guide
@@ -92,7 +106,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="p-12">
+        <div className="sm:p-12 p-6">
           <img
             src="https://herocarrental.com/wp-content/uploads/2020/12/office.jpg"
             alt=""
@@ -101,44 +115,45 @@ const About = () => {
         </div>
       </div>
 
-      <div className="flex mx-20 relative gap-4 my-20">
-        <img
-          width={300}
-          src="https://herocarrental.com/wp-content/uploads/2020/08/module-13-removebg-preview.png"
-          alt=""
-          className="absolute left-5 bottom-0"
-        />
+      <div className="flex sm:flex-row flex-col sm:mx-20 mx-2 relative gap-4 my-20">
+        <div className="relative bg-gray-300 rounded-3xl sm:w-[50%] w-full flex sm:flex-row flex-col-reverse justify-between px-12">
+          <img
+            width={300}
+            src="https://herocarrental.com/wp-content/uploads/2020/08/module-13-removebg-preview.png"
+            alt=""
+            className="sm:h-[110%] sm:absolute sm:bottom-0"
+          />
 
-        <div className="bg-gray-300 rounded-3xl w-[50%] flex h-[400px] pt-20 justify-between px-12">
-          <div className="w=[30%]"></div>
-          <div className="flex flex-col gap-1">
+          <div className="sm:absolute sm:right-10 mt-10 flex flex-col gap-1 sm:w-fit w-full text-center">
             <h3 className="text-4xl font-bold">Our client says</h3>
-            <p className="text-red-500 text-3xl font-extrabold">"</p>
-            <p className="w-[250px] text-gray-700 italic">
+            <p className="text-red-500 text-3xl font-extrabold sm:text-start text-center">
+              "
+            </p>
+            <p className=" text-gray-700 italic sm:w-[250px]">
               Rented a car for a road trip, it was perfect! Highly recommend!
             </p>
           </div>
         </div>
 
-        <div className="w-[50%] h-[400px]">
+        <div className="sm:w-[50%] w-full h-[400px]">
           <img
-            className="rounded-3xl h-[400px]"
+            className="rounded-3xl h-[400px] object-cover"
             src="https://herocarrental.com/wp-content/uploads/2023/01/655465665467-min-1.jpg"
             alt=""
           />
         </div>
       </div>
 
-      <div className="flex justify-between m-20">
-        <div className="flex px-12">
+      <div className="flex sm:flex-row flex-col gap-12 sm:gap-0 justify-between m-20">
+        <div className="flex flex-col justify-center items-center sm:flex-row sm:px-12">
           <span className="text-5xl font-extrabold text-red-500 pl-4">10</span>
           <span className="text-3xl font-bold px-4 w-[150px]">
             Years in Business
           </span>
         </div>
 
-        <div className="flex gap-12 justify-between border-l border-l-gray-700 px-12">
-          <div className="flex flex-col gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-12 justify-between sm:border-l max-sm:border-t border-t-gray-700 sm:border-l-gray-700 px-12 pt-8">
+          <div className="flex flex-col gap-4 justify-center items-center w-full">
             <p className="text-5xl font-extrabold">2,000+</p>
             <p className="text-red-500 text-xl">Customers</p>
           </div>
@@ -155,13 +170,13 @@ const About = () => {
 
       <div
         id="faqs"
-        className="flex flex-col m-20 bg-gray-300 rounded-3xl px-20 py-6 gap-4"
+        className="flex flex-col my-20 sm:mx-20 mx-2 bg-gray-300 rounded-3xl sm:px-20 px-4 py-6 gap-4"
       >
-        <h1 className="text-5xl font-bold w-full text-center my-8">
+        <h1 className="sm:text-5xl text-4xl font-bold w-full text-center my-8">
           Frequently Asked Questions
         </h1>
 
-        <div className="grid grid-cols-2 gap-4 px-8">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 sm:px-8">
           <div className="flex flex-col gap-4 w-full mx-auto">
             <FAQsCard
               question={"Do you offer any sort of warranty?"}
