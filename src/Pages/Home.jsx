@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore/lite";
 import Footer from "../Components/Footer";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import db from "../firebase";
 import LuxuryCar from "/src/assets/images/hero-image-merc.png";
 import EconomyCar from "/src/assets/images/economy.webp";
 import logo from "/src/assets/images/logo.png";
-import iconFilter from "/images/sliders-solid.svg"
+import iconFilter from "/images/sliders-solid.svg";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import VehicleListingCard from "../Components/VehicleListingCard";
 import WhatsAppButton from "../Components/WhatsAppButton";
@@ -31,6 +31,8 @@ const Home = () => {
   const [brands, setBrands] = useState(null);
   const [scroll, setScroll] = useState(0);
   const { hash } = useLocation();
+  const [countLuxuryCars, setCountLuxuryCars] = useState(null);
+  const [countEconomyCars, setCountEconomyCars] = useState(null);
 
   useEffect(() => {
     if (hash) {
@@ -43,15 +45,13 @@ const Home = () => {
     }
   }, [hash]);
 
-  const navigate = useNavigate();
-
   const applyFilters = () => {
     // console.log(filts);
 
     if (priceMin !== "" && priceMax !== "")
       setFilters((prev) => {
         return { ...prev, price_min: priceMin, price_max: priceMax };
-      }); 
+      });
     setShowFilters(false);
   };
 
@@ -117,6 +117,24 @@ const Home = () => {
 
   useEffect(() => {
     getData(db).then((data) => {
+      if (!countEconomyCars) {
+        const luxury_cars = data.reduce((acc, item) => {
+          if (item.Car_status.toLowerCase() === "luxury") {
+            acc += 1;
+          }
+          return acc;
+        }, 0); // Initial value set to 0
+        setCountLuxuryCars(luxury_cars);
+
+        const econ_cars = data.reduce((acc, item) => {
+          if (item.Car_status.toLowerCase() === "economy") {
+            acc += 1;
+          }
+          return acc;
+        }, 0); // Initial value set to 0
+        setCountEconomyCars(econ_cars);
+      }
+
       // console.log(vehicleType);
       let filteredData = vehicleType
         ? data.filter(
@@ -189,7 +207,7 @@ const Home = () => {
                           placeholder="From"
                           type="text"
                           className="bg-inherit focus:outline-none w-full"
-                          onChange={(e)=>setPriceMin(e.target.value)}
+                          onChange={(e) => setPriceMin(e.target.value)}
                           value={priceMin || null}
                         />
                         <p className="">AED</p>
@@ -201,7 +219,7 @@ const Home = () => {
                           placeholder="To"
                           type="text"
                           className="bg-inherit focus:outline-none w-full"
-                          onChange={(e)=>setPriceMax(e.target.value)}
+                          onChange={(e) => setPriceMax(e.target.value)}
                           value={priceMax || ""}
                         />
                         <p className="">AED</p>
@@ -285,10 +303,14 @@ const Home = () => {
 
       {/* hero */}
       <div id="navigation" className="relative w-full">
-
-      <Link to={"/"}>
-        <img src={logo} width="175" alt="" className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"/>
-      </Link>
+        <Link to={"/"}>
+          <img
+            src={logo}
+            width="175"
+            alt=""
+            className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
+          />
+        </Link>
 
         {/* navigation bar */}
         <div
@@ -296,8 +318,9 @@ const Home = () => {
             scroll > 0 ? "bg-white shadow-xl" : "bg-none"
           }`}
         >
-          <img src={logo} width="175" alt="" className="fixed left-20"/>
-
+          <Link to={"/"}>
+            <img src={logo} width="175" alt="" className="fixed left-20" />
+          </Link>
           <ul
             className={`flex gap-12 text-lg font-medium max-auto ${
               scroll > 0 ? "text-black" : "text-black"
@@ -325,7 +348,7 @@ const Home = () => {
             </li>
           </ul>
 
-          <div className="fixed right-20 outline outline-2 text-white bg-red-500/80 outline-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
+          <div className="fixed right-20 outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
             <button
               onClick={() => {
                 document
@@ -362,7 +385,6 @@ const Home = () => {
 
       {/* select car type */}
       <div className="flex flex-col gap-12 w-full mt-20">
-
         <div className="sm:flex gap-12 px-12 items-center justify-center hidden lg:my-12">
           <div
             onClick={() => selectCarType("luxury")}
@@ -374,7 +396,11 @@ const Home = () => {
           >
             <img src={LuxuryCar} className="w-full h-auto" alt="" />
             <p className="text-3xl font-medium">Luxury</p>
-            <p className="text-2xl">150+ cars available</p>
+            {countLuxuryCars !== null ? (
+              <p className="text-2xl">{countLuxuryCars} cars available</p>
+            ) : (
+              <div className="my-2 rounded-xl w-[50%] h-6 animate-pulse bg-gray-300"></div>
+            )}
           </div>
 
           <div
@@ -387,7 +413,11 @@ const Home = () => {
           >
             <img src={EconomyCar} className="w-full h-auto" alt="" />
             <p className="text-3xl font-medium">Economy</p>
-            <p className="text-2xl">250+ cars available</p>
+            {countEconomyCars !== null ? (
+              <p className="text-2xl">{countEconomyCars} cars available</p>
+            ) : (
+              <div className="my-2 rounded-xl w-[50%] h-6 animate-pulse bg-gray-300"></div>
+            )}
           </div>
         </div>
 
@@ -423,9 +453,9 @@ const Home = () => {
             onClick={() => {
               setShowFilters(true);
             }}
-            className="bg-red-500/80 text-white px-4 rounded-xl text-lg font-medium outline outline-red-500/80 hover:text-black hover:bg-red-500 py-1 flex gap-2 sm:w-fit"
+            className="bg-red-500/80 text-white px-4 rounded-xl text-lg font-medium outline hover:bg-red-500 py-1 flex gap-2 sm:w-fit"
           >
-            <img src={iconFilter} alt="" width={20}/>
+            <img src={iconFilter} alt="" width={20} />
             <p className="">Filters</p>
           </button>
 

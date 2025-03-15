@@ -20,6 +20,7 @@ const Details = () => {
   const [scroll, setScroll] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [requestStatus, setRequestStatus] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,13 +97,16 @@ const Details = () => {
         },
       });
 
-      console.log("Message Sent:", response.data);
+      // console.log("Message Sent:", response.data);
       setProcessing(false);
+      setRequestStatus("success");
     } catch (error) {
-      console.error(
-        "Error sending message:",
-        error.response?.data || error.message
-      );
+      // console.error(
+      //   "Error sending message:",
+      //   error.response?.data || error.message
+      // );
+      setProcessing(false);
+      setRequestStatus("error");
     }
   };
 
@@ -144,7 +148,9 @@ const Details = () => {
             scroll > 0 ? "bg-white shadow-xl" : "bg-none"
           }`}
         >
-          <img src={logo} width="175" alt="" className="fixed left-20" />
+          <Link to={"/"}>
+            <img src={logo} width="175" alt="" className="fixed left-20" />
+          </Link>
 
           <ul
             className={`flex gap-12 text-lg font-medium ${
@@ -231,6 +237,11 @@ const Details = () => {
                   />
                 </div>
               </div>
+
+                  <div className="flex flex-col">
+                    {requestStatus === "success" && <p id="msg-success" className="text-xl font-medium text-green-500">You request has been sent successfully! Our representatives will contact you soon.</p>}
+                    {requestStatus === "error" && <p id="msg-error" className="text-xl font-medium text-red-500">An unexpected error occurred. Please contact us using the Whatsapp button.</p>}
+                  </div>
 
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2 max-lg:hidden">

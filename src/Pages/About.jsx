@@ -45,7 +45,9 @@ const About = () => {
             scroll > 0 ? "bg-white shadow-xl" : "bg-none"
           }`}
         >
-          <img src={logo} width="175" alt="" className="fixed left-20"/>
+          <Link to={"/"}>
+            <img src={logo} width="175" alt="" className="fixed left-20" />
+          </Link>
 
           <ul
             className={`flex gap-12 text-lg font-medium max-auto ${
