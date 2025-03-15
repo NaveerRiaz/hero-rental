@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import FAQsCard from "../Components/FAQsCard";
 import { useNavigate, Link, useLocation } from "react-router-dom";
@@ -8,6 +8,8 @@ import HamburgerMenu from "../Components/HamburgerMenu";
 const About = () => {
   const navigate = useNavigate();
   const { hash } = useLocation();
+  const [scroll, setScroll] = useState(0);
+  
 
   useEffect(() => {
     if (hash) {
@@ -18,37 +20,61 @@ const About = () => {
     }
   }, [hash]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setScroll(scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <div id="navigation"></div>
 
-      {/* navigation bar */}
-      <div className="md:flex hidden justify-center py-8 px-16 items-center top-0 fixed w-full z-10 bg-white shadow-xl">
-        <img className="left-10 fixed" src={logo} width="175" alt="" />
+      <Link to={"/"}>
+        <img src={logo} width="175" alt="" className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"/>
+      </Link>
 
-        <ul className="flex gap-12 text-lg font-medium text-black">
-          <li>
-            <Link className="hover:text-red-600" to="/#navigation">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-red-600" to="/about#navigation">
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-red-600" to="/about#faqs">
-              FAQs
-            </Link>
-          </li>
-          <li>
-            <a className="hover:text-red-600" href="/#vehicles">
-              Vehicles
-            </a>
-          </li>
-        </ul>
-      </div>
+        {/* navigation bar */}
+        <div
+          className={`lg:flex hidden justify-center py-8 px-16 top-0 fixed items-center w-full z-10 ${
+            scroll > 0 ? "bg-white shadow-xl" : "bg-none"
+          }`}
+        >
+          <img src={logo} width="175" alt="" className="fixed left-20"/>
+
+          <ul
+            className={`flex gap-12 text-lg font-medium max-auto ${
+              scroll > 0 ? "text-black" : "text-black"
+            }`}
+          >
+            <li>
+              <Link className="hover:text-red-600" to="/#navigation">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-red-600" to="/about#navigation">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-red-600" to="/about#faqs">
+                FAQs
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-red-600" to="/#vehicles">
+                Vehicles
+              </Link>
+            </li>
+          </ul>
+
+
+        </div>
 
       {/* hamburger menu */}
       <HamburgerMenu />
@@ -56,20 +82,17 @@ const About = () => {
       {/* Whatsapp button */}
       <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
         <p className="text-xl max-sm:hidden">How can we help you?</p>
-      <a
-        href="https://wa.me/971561382222"
-        className=""
-      >
-        <img
-          src="https://img.icons8.com/color/48/000000/whatsapp.png"
-          alt=""
-          width="75"
+        <a href="https://wa.me/971561382222" className="">
+          <img
+            src="https://img.icons8.com/color/48/000000/whatsapp.png"
+            alt=""
+            width="75"
           />
-      </a>
+        </a>
       </div>
 
-      <div className="flex sm:flex-row flex-col-reverse text-black sm:mt-40 mt-12 w-full">
-        <div className="flex flex-col w-full sm:w-[80%] gap-8 px-6 sm:px-12">
+      <div className="flex lg:flex-row sm:flex-col flex-col-reverse text-black lg:mt-40 sm:mt-20 mt-12 w-full">
+        <div className="flex flex-col w-full gap-8 px-6 sm:px-12">
           <h1 className="text-5xl font-bold ">About Us</h1>
           <p className="text-lg text-gray-700 font-medium">
             At Hero Car Rental, we are dedicated to providing our customers with
@@ -115,44 +138,42 @@ const About = () => {
         </div>
       </div>
 
-      <div className="flex sm:flex-row flex-col sm:mx-20 mx-2 relative gap-4 my-20">
-        <div className="relative bg-gray-300 rounded-3xl sm:w-[50%] w-full flex sm:flex-row flex-col-reverse justify-between px-12">
+      <div className="grid lg:grid-cols-2 grid-cols-1 md:mx-12 mx-2 relative gap-4 my-20">
+        <div className="bg-gray-300 rounded-3xl w-full flex lg:flex-row flex-col-reverse justify-center">
           <img
             width={300}
             src="https://herocarrental.com/wp-content/uploads/2020/08/module-13-removebg-preview.png"
             alt=""
-            className="sm:h-[110%] sm:absolute sm:bottom-0"
+            className="h-auto aspect-auto mx-auto"
           />
 
-          <div className="sm:absolute sm:right-10 mt-10 flex flex-col gap-1 sm:w-fit w-full text-center">
-            <h3 className="text-4xl font-bold">Our client says</h3>
-            <p className="text-red-500 text-3xl font-extrabold sm:text-start text-center">
-              "
-            </p>
-            <p className=" text-gray-700 italic sm:w-[250px]">
+          <div className="mt-10 flex flex-col gap-1 w-full text-center lg:text-start lg:px-4">
+            <h3 className="text-4xl font-bold ">Our client says</h3>
+            <p className="text-red-500 text-3xl font-extrabold">"</p>
+            <p className=" text-gray-700 italic w-full text-center">
               Rented a car for a road trip, it was perfect! Highly recommend!
             </p>
           </div>
         </div>
 
-        <div className="sm:w-[50%] w-full h-[400px]">
+        <div className="w-full h-full">
           <img
-            className="rounded-3xl h-[400px] object-cover"
+            className="rounded-3xl h-full object-cover"
             src="https://herocarrental.com/wp-content/uploads/2023/01/655465665467-min-1.jpg"
             alt=""
           />
         </div>
       </div>
 
-      <div className="flex sm:flex-row flex-col gap-12 sm:gap-0 justify-between m-20">
-        <div className="flex flex-col justify-center items-center sm:flex-row sm:px-12">
+      <div className="flex lg:flex-row flex-col gap-12 lg:gap-0 justify-between m-20">
+        <div className="flex flex-col justify-center items-center lg:flex-row lg:px-12">
           <span className="text-5xl font-extrabold text-red-500 pl-4">10</span>
-          <span className="text-3xl font-bold px-4 w-[150px]">
+          <span className="text-3xl font-bold px-4 w-[150px] text-center">
             Years in Business
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-12 justify-between sm:border-l max-sm:border-t border-t-gray-700 sm:border-l-gray-700 px-12 pt-8">
+        <div className="flex flex-col sm:flex-row gap-12 justify-between lg:border-l max-sm:border-t border-t-gray-700 lg:border-l-gray-700 px-12 pt-8">
           <div className="flex flex-col gap-4 justify-center items-center w-full">
             <p className="text-5xl font-extrabold">2,000+</p>
             <p className="text-red-500 text-xl">Customers</p>
@@ -170,13 +191,13 @@ const About = () => {
 
       <div
         id="faqs"
-        className="flex flex-col my-20 sm:mx-20 mx-2 bg-gray-300 rounded-3xl sm:px-20 px-4 py-6 gap-4"
+        className="flex flex-col my-20 lg:mx-20 sm:mx-12 mx-2 bg-gray-300 rounded-3xl lg:px-20 sm:px-12 px-4 py-6 gap-4"
       >
         <h1 className="sm:text-5xl text-4xl font-bold w-full text-center my-8">
           Frequently Asked Questions
         </h1>
 
-        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 sm:px-8">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 lg:px-8">
           <div className="flex flex-col gap-4 w-full mx-auto">
             <FAQsCard
               question={"Do you offer any sort of warranty?"}

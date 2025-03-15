@@ -9,7 +9,7 @@ const HamburgerMenu = () => {
       {/* Hamburger Icon */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-red-500 text-black sm:hidden"
+        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-red-500/80 text-white lg:hidden"
       >
         {/* Hamburger Icon (SVG) */}
         <svg className="w-8 h-8" viewBox="0 0 24 24">

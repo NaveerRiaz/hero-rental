@@ -127,23 +127,23 @@ const Details = () => {
     <>
       <div id="navigation"></div>
 
-      <div className="relative w-full sm:h-screen">
+      <div className="relative w-full lg:h-screen">
+
+      <Link to={"/"}>
+        <img src={logo} width="175" alt="" className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"/>
+      </Link>
+
         {/* navigation bar */}
         <div
-          className={`md:flex hidden justify-between py-8 px-16 items-center w-full z-10 ${
-            scroll > 0 ? "bg-white shadow-xl top-0 fixed " : "bg-black"
+          className={`lg:flex hidden justify-center py-8 px-16 top-0 fixed items-center w-full z-10 ${
+            scroll > 0 ? "bg-white shadow-xl" : "bg-none"
           }`}
         >
-          <img
-            src={logo}
-            width="175"
-            alt=""
-            className="absolute top-50 left-50"
-          />
+          <img src={logo} width="175" alt="" className="fixed left-20"/>
 
           <ul
-            className={`mx-auto flex gap-12 text-lg font-medium ${
-              scroll > 0 ? "text-black" : "text-white"
+            className={`flex gap-12 text-lg font-medium ${
+              scroll > 0 ? "text-black" : "text-black"
             }`}
           >
             <li>
@@ -162,9 +162,9 @@ const Details = () => {
               </Link>
             </li>
             <li>
-              <a className="hover:text-red-600" href="/#vehicles">
+              <Link className="hover:text-red-600" to="/#vehicles">
                 Vehicles
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -173,7 +173,7 @@ const Details = () => {
 
         {/* Whatsapp button */}
         <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
-          <p className="text-xl max-sm:hidden">How can we help you?</p>
+          <p className="text-xl max-lg:hidden">How can we help you?</p>
           <a href="https://wa.me/971561382222" className="">
             <img
               src="https://img.icons8.com/color/48/000000/whatsapp.png"
@@ -185,7 +185,7 @@ const Details = () => {
 
         {car ? (
           <>
-            <div className="flex px-20 gap-4 py-4 relative max-sm:hidden">
+            <div className="flex px-20 gap-4 py-4 relative max-lg:hidden lg:mt-24">
               <a href="/" className="text-gray-600 text-lg hover:text-black">
                 Home
               </a>
@@ -199,9 +199,25 @@ const Details = () => {
               </a>
             </div>
 
-            <div className="flex px-20 gap-4 max-sm:flex-col max-sm:px-4 max-sm:my-20">
-              <div className="flex gap-2 h-[500px] w-[60%] max-sm:w-full max-sm:flex-col-reverse max-sm:h-auto">
-                <div className="flex flex-col w-[10%] h-[500px] overflow-y-scroll scrollbar-none max-sm:flex-row max-sm:w-full max-sm:h-[100px] gap-2">
+            <div className="flex px-20 gap-4 max-lg:flex-col max-lg:px-4 max-lg:my-20">
+
+            <div className="flex flex-col lg:hidden">
+                  <h1 className="text-3xl font-medium">{car.Car_name}</h1>
+                  <div className="flex gap-2 items-center">
+                    <p className="text-lg">{car.Car_model}</p>
+                    <p className="text-lg">{car.Car_type}</p>
+                  </div>
+
+                  <p className="text-2xl font-bold text-red-500">
+                    {car.Car_price
+                      ? `AED ${car.Car_price} per day`
+                      : "Contact for a price"}
+                  </p>
+            </div>
+
+
+              <div className="flex gap-2 h-[500px] w-[60%] max-lg:w-full max-lg:flex-col-reverse max-lg:h-auto">
+                <div className="flex flex-col w-[10%] h-[500px] overflow-y-scroll scrollbar-none max-lg:flex-row max-lg:w-full max-lg:h-[100px] gap-2">
                   {Array.from(car.Car_image).map((item, index) => (
                     <img
                       key={index}
@@ -223,20 +239,22 @@ const Details = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-medium">{car.Car_name}</h1>
-                <div className="flex gap-2 items-center">
-                  <p className="text-lg">{car.Car_model}</p>
-                  <p className="text-lg">{car.Car_type}</p>
+                <div className="flex flex-col gap-2 max-lg:hidden">
+                  <h1 className="text-3xl font-medium">{car.Car_name}</h1>
+                  <div className="flex gap-2 items-center">
+                    <p className="text-lg">{car.Car_model}</p>
+                    <p className="text-lg">{car.Car_type}</p>
+                  </div>
+
+                  <p className="text-2xl font-bold text-red-500">
+                    {car.Car_price
+                      ? `AED ${car.Car_price} per day`
+                      : "Contact for a price"}
+                  </p>
                 </div>
 
-                <p className="text-2xl font-bold text-red-500">
-                  {car.Car_price
-                    ? `AED ${car.Car_price} per day`
-                    : "Contact for a price"}
-                </p>
-
                 <form onSubmit={handleSubmit}>
-                  <div className="flex justify-between gap-2 my-2 max-sm:flex-col">
+                  <div className="flex justify-between gap-2 my-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Name*</p>
                       <input
@@ -258,7 +276,7 @@ const Details = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-between gap-2 max-sm:flex-col">
+                  <div className="flex justify-between gap-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Date From*</p>
                       <DatePicker
