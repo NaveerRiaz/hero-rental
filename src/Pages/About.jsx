@@ -4,6 +4,7 @@ import FAQsCard from "../Components/FAQsCard";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import logo from "/src/assets/images/logo.png";
 import HamburgerMenu from "../Components/HamburgerMenu";
+import WhatsAppButton from "../Components/WhatsAppButton";
 
 const About = () => {
   const navigate = useNavigate();
@@ -80,16 +81,7 @@ const About = () => {
       <HamburgerMenu />
 
       {/* Whatsapp button */}
-      <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
-        <p className="text-xl max-sm:hidden">How can we help you?</p>
-        <a href="https://wa.me/971561382222" className="">
-          <img
-            src="https://img.icons8.com/color/48/000000/whatsapp.png"
-            alt=""
-            width="75"
-          />
-        </a>
-      </div>
+      <WhatsAppButton/>
 
       <div className="flex lg:flex-row sm:flex-col flex-col-reverse text-black lg:mt-40 sm:mt-20 mt-12 w-full">
         <div className="flex flex-col w-full gap-8 px-6 sm:px-12">

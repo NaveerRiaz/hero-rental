@@ -9,6 +9,7 @@ import Footer from "../Components/Footer";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
+import WhatsAppButton from "../Components/WhatsAppButton";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -128,10 +129,14 @@ const Details = () => {
       <div id="navigation"></div>
 
       <div className="relative w-full lg:h-screen">
-
-      <Link to={"/"}>
-        <img src={logo} width="175" alt="" className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"/>
-      </Link>
+        <Link to={"/"}>
+          <img
+            src={logo}
+            width="175"
+            alt=""
+            className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
+          />
+        </Link>
 
         {/* navigation bar */}
         <div
@@ -139,7 +144,7 @@ const Details = () => {
             scroll > 0 ? "bg-white shadow-xl" : "bg-none"
           }`}
         >
-          <img src={logo} width="175" alt="" className="fixed left-20"/>
+          <img src={logo} width="175" alt="" className="fixed left-20" />
 
           <ul
             className={`flex gap-12 text-lg font-medium ${
@@ -172,16 +177,7 @@ const Details = () => {
         <HamburgerMenu />
 
         {/* Whatsapp button */}
-        <div className="flex gap-4 items-center fixed bottom-10 right-10 z-50 sm:bg-white sm:rounded-3xl sm:px-4 sm:py-2 sm:shadow-xl">
-          <p className="text-xl max-lg:hidden">How can we help you?</p>
-          <a href="https://wa.me/971561382222" className="">
-            <img
-              src="https://img.icons8.com/color/48/000000/whatsapp.png"
-              alt=""
-              width="75"
-            />
-          </a>
-        </div>
+        <WhatsAppButton />
 
         {car ? (
           <>
@@ -200,21 +196,19 @@ const Details = () => {
             </div>
 
             <div className="flex px-20 gap-4 max-lg:flex-col max-lg:px-4 max-lg:my-20">
+              <div className="flex flex-col lg:hidden">
+                <h1 className="text-3xl font-medium">{car.Car_name}</h1>
+                <div className="flex gap-2 items-center">
+                  <p className="text-lg">{car.Car_model}</p>
+                  <p className="text-lg">{car.Car_type}</p>
+                </div>
 
-            <div className="flex flex-col lg:hidden">
-                  <h1 className="text-3xl font-medium">{car.Car_name}</h1>
-                  <div className="flex gap-2 items-center">
-                    <p className="text-lg">{car.Car_model}</p>
-                    <p className="text-lg">{car.Car_type}</p>
-                  </div>
-
-                  <p className="text-2xl font-bold text-red-500">
-                    {car.Car_price
-                      ? `AED ${car.Car_price} per day`
-                      : "Contact for a price"}
-                  </p>
-            </div>
-
+                <p className="text-2xl font-bold text-red-500">
+                  {car.Car_price
+                    ? `AED ${car.Car_price} per day`
+                    : "Contact for a price"}
+                </p>
+              </div>
 
               <div className="flex gap-2 h-[500px] w-[60%] max-lg:w-full max-lg:flex-col-reverse max-lg:h-auto">
                 <div className="flex flex-col w-[10%] h-[500px] overflow-y-scroll scrollbar-none max-lg:flex-row max-lg:w-full max-lg:h-[100px] gap-2">
