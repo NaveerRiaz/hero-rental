@@ -22,7 +22,7 @@ const VehicleListingCard = ({ item }) => {
       <div className="py-4 px-6">
         <p className="text-3xl font-medium w-full">{item.Car_name}</p>
         <p className="text-2xl w-full text-red-500 font-medium">
-          {item.Car_price ? `AED ${item.Car_price}` : "Call to confirm"}
+          {item.Car_price ? `AED ${item.Car_price} per day` : "Call to confirm"}
         </p>
         <p className="text-2xl text-gray-500">
           {item.Car_seats ? `${item.Car_seats.split(" ")[0]} Doors` : ""}{" "}

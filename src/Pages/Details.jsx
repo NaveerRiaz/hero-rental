@@ -10,6 +10,8 @@ import HamburgerMenu from "../Components/HamburgerMenu";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import WhatsAppButton from "../Components/WhatsAppButton";
+import { ToastContainer, toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -20,7 +22,35 @@ const Details = () => {
   const [scroll, setScroll] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [requestStatus, setRequestStatus] = useState(null);
+
+  const notifySuccess = () =>
+    toast.success(
+      "Thank you for submitting an enquiry. We will contact you soon",
+      {
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      }
+    );
+  const notifyError = () =>
+    toast.error(
+      "Something went wrong! Please contact us on whatsapp, phone or email.",
+      {
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      }
+    );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,14 +129,14 @@ const Details = () => {
 
       // console.log("Message Sent:", response.data);
       setProcessing(false);
-      setRequestStatus("success");
+      notifySuccess();
     } catch (error) {
       // console.error(
       //   "Error sending message:",
       //   error.response?.data || error.message
       // );
       setProcessing(false);
-      setRequestStatus("error");
+      notifyError();
     }
   };
 
@@ -238,11 +268,6 @@ const Details = () => {
                 </div>
               </div>
 
-                  <div className="flex flex-col">
-                    {requestStatus === "success" && <p id="msg-success" className="text-xl font-medium text-green-500">You request has been sent successfully! Our representatives will contact you soon.</p>}
-                    {requestStatus === "error" && <p id="msg-error" className="text-xl font-medium text-red-500">An unexpected error occurred. Please contact us using the Whatsapp button.</p>}
-                  </div>
-
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2 max-lg:hidden">
                   <h1 className="text-3xl font-medium">{car.Car_name}</h1>
@@ -349,6 +374,9 @@ const Details = () => {
         )}
       </div>
 
+      <div className="fixed top-0 right-0">
+        <ToastContainer />
+      </div>
       {car && <Footer />}
     </>
   );
