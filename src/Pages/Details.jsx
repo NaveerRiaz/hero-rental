@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -22,6 +23,8 @@ const Details = () => {
   const [scroll, setScroll] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const navigate = useNavigate();
 
   const notifySuccess = () =>
     toast.success(
@@ -127,14 +130,11 @@ const Details = () => {
         },
       });
 
-      // console.log("Message Sent:", response.data);
       setProcessing(false);
       notifySuccess();
+      navigate("https://wa.me/971501683111");
+      
     } catch (error) {
-      // console.error(
-      //   "Error sending message:",
-      //   error.response?.data || error.message
-      // );
       setProcessing(false);
       notifyError();
     }
@@ -348,7 +348,7 @@ const Details = () => {
                     <span className="px-2">{car.Car_brand}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium">Year:</span>
+                    <span className="font-medium">Model:</span>
                     <span className="px-2">{car.Car_model}</span>
                   </div>
                   <div className="flex">
