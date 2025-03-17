@@ -107,13 +107,10 @@ const Details = () => {
       "ContentVariables",
       JSON.stringify({
         car_name: car.Car_name,
-        car_brand: car.Car_brand,
-        car_type: car.Car_type,
-        car_price: car.Car_price ? car.Car_price : "Contact for a price",
+        car_price: car.Car_price ? `${car.Car_price}` : "Contact for a price",
         start_date: date_from,
         end_date: date_to,
         customer_name: name,
-        customer_email: "example@email.com",
         customer_phone: phone,
       })
     );
@@ -132,7 +129,8 @@ const Details = () => {
 
       setProcessing(false);
       notifySuccess();
-      navigate("https://wa.me/971501683111");
+      
+      window.open(`https://wa.me/971501683111`, '_blank');
       
     } catch (error) {
       setProcessing(false);
