@@ -119,7 +119,7 @@ const Home = () => {
     getData(db).then((data) => {
       if (!countEconomyCars) {
         const luxury_cars = data.reduce((acc, item) => {
-          if (item.Car_status.toLowerCase() === "luxury") {
+          if (item.Car_status && item.Car_status.toLowerCase() === "luxury") {
             acc += 1;
           }
           return acc;
@@ -127,7 +127,7 @@ const Home = () => {
         setCountLuxuryCars(luxury_cars);
 
         const econ_cars = data.reduce((acc, item) => {
-          if (item.Car_status.toLowerCase() === "economy") {
+          if (item.Car_status && item.Car_status.toLowerCase() === "economy") {
             acc += 1;
           }
           return acc;

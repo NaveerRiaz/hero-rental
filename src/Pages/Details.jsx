@@ -129,9 +129,8 @@ const Details = () => {
 
       setProcessing(false);
       notifySuccess();
-      
-      window.open(`https://wa.me/971501683111`, '_blank');
-      
+
+      window.open(`https://wa.me/971501683111`, "_blank");
     } catch (error) {
       setProcessing(false);
       notifyError();
@@ -311,7 +310,11 @@ const Details = () => {
                         selected={startDate}
                         dateFormat="dd/MM/yyyy"
                         placeholderText="DD/MM/YYYY"
-                        onChange={(date) => setStartDate(date)}
+                        onChange={(date) => {
+                          setStartDate(date);
+                          setEndDate(null); // Reset end date when start date changes
+                        }}
+                        minDate={new Date()} // Restricts selection to today onwards
                         className="rounded-lg px-2 py-1 w-full"
                       />
                     </div>
@@ -322,6 +325,8 @@ const Details = () => {
                         dateFormat="dd/MM/yyyy"
                         placeholderText="DD/MM/YYYY"
                         onChange={(date) => setEndDate(date)}
+                        minDate={startDate} // Ensures "Date To" starts from "Date From"
+                        disabled={!startDate} // Disable if "Date From" is not selected
                         className="rounded-lg px-2 py-1 w-full"
                       />
                     </div>
