@@ -130,10 +130,11 @@ const Details = () => {
       setProcessing(false);
       notifySuccess();
 
-      window.open(`https://wa.me/971501683111`, "_blank");
     } catch (error) {
       setProcessing(false);
       notifyError();
+    } finally {
+      window.open(`https://wa.me/971501683111`, "_blank");
     }
   };
 
