@@ -46,7 +46,7 @@ const About = () => {
           }`}
         >
           <Link to={"/"}>
-            <img src={logo} width="175" alt="" className="fixed left-20" />
+            <img src={logo} width="175" alt="" className="fixed left-20 top-5" />
           </Link>
 
           <ul
