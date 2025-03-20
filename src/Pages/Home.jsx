@@ -385,6 +385,11 @@ const Home = () => {
 
       {/* select car type */}
       <div className="flex flex-col gap-12 w-full mt-20">
+
+          <div className="flex rounded-lg h-20 bg-red-500/80 mx-12 justify-center items-center">
+              <p className="lg:text-3xl text-xl font-semibold text-gray-100 animate-pulse text-center">20% off when you book for 4 or more days!</p>
+          </div>
+
         <div className="sm:flex gap-12 px-12 items-center justify-center hidden lg:my-12">
           <div
             onClick={() => selectCarType("luxury")}
