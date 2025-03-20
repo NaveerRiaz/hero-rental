@@ -304,6 +304,11 @@ const Details = () => {
                       />
                     </div>
                   </div>
+                  <div className="flex rounded-lg  justify-center items-center">
+          <p className="font-semibold text-red-500/80 animate-pulse text-center">
+          Book for 4 or more days and get an exclusive discount!
+          </p>
+        </div>
                   <div className="flex justify-between gap-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">Date From*</p>
