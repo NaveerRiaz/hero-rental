@@ -10,6 +10,7 @@ import iconFilter from "/images/sliders-solid.svg";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import VehicleListingCard from "../Components/VehicleListingCard";
 import WhatsAppButton from "../Components/WhatsAppButton";
+import { useTranslation } from "react-i18next";
 
 const images = [
   "/src/assets/images/logo-audi.png",
@@ -33,6 +34,12 @@ const Home = () => {
   const { hash } = useLocation();
   const [countLuxuryCars, setCountLuxuryCars] = useState(null);
   const [countEconomyCars, setCountEconomyCars] = useState(null);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    document.dir = lng === "ar" ? "rtl" : "ltr"; // Set RTL for Arabic
+  };
 
   useEffect(() => {
     if (hash) {
@@ -333,38 +340,47 @@ const Home = () => {
           >
             <li>
               <Link className="hover:text-red-600" to="/#navigation">
-                Home
+                {t('home')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#navigation">
-                About Us
+                {t('about')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#faqs">
-                FAQs
+                {t('FAQs')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/#vehicles">
-                Vehicles
+                {t('vehicles')}
               </Link>
             </li>
           </ul>
 
-          <div className="fixed right-20 outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
-            <button
-              onClick={() => {
-                document
-                  .getElementById("vehicles")
-                  .scrollIntoView({ behavior: "smooth" });
-                setShowFilters(true);
-              }}
-              className="text-ingerit px-4 py-2 focus:outline-none hover:cursor-pointer"
-            >
-              Filters
-            </button>
+          <div className={`fixed right-20 flex gap-4 ${i18n.language === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+            <div className="outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
+              <button
+                onClick={() => {
+                  document
+                    .getElementById("vehicles")
+                    .scrollIntoView({ behavior: "smooth" });
+                  setShowFilters(true);
+                }}
+                className="text-ingerit px-4 py-2 focus:outline-none hover:cursor-pointer"
+              >
+                {t('filters')}
+              </button>
+            </div>
+            <div>
+              {i18n.language === "ar" ? (
+                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("en")}>English</button>
+              ) : (
+                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("ar")}>العربية</button>
+              )}
+            </div>
           </div>
         </div>
 
@@ -392,7 +408,7 @@ const Home = () => {
       <div className="flex flex-col gap-12 w-full mt-20">
         <div className="flex rounded-lg h-20 bg-red-500/80 mx-12 justify-center items-center">
           <p className="lg:text-3xl text-xl font-semibold text-gray-100 animate-pulse text-center">
-          Book for 4 or more days and get an exclusive discount!
+            {t('sale4')}
           </p>
         </div>
 
@@ -406,12 +422,12 @@ const Home = () => {
             }
           >
             <img src={LuxuryCar} className="w-full h-auto" alt="" />
-            <p className="text-3xl font-medium">Luxury</p>
-            {countLuxuryCars !== null ? (
+            <p className="text-3xl font-medium">{t('luxury')}</p>
+            {/* {countLuxuryCars !== null ? (
               <p className="text-2xl">{countLuxuryCars} cars available</p>
             ) : (
               <div className="my-2 rounded-xl w-[50%] h-6 animate-pulse bg-gray-300"></div>
-            )}
+            )} */}
           </div>
 
           <div
@@ -423,12 +439,12 @@ const Home = () => {
             }
           >
             <img src={EconomyCar} className="w-full h-auto" alt="" />
-            <p className="text-3xl font-medium">Economy</p>
-            {countEconomyCars !== null ? (
+            <p className="text-3xl font-medium">{t('economy')}</p>
+            {/* {countEconomyCars !== null ? (
               <p className="text-2xl">{countEconomyCars} cars available</p>
             ) : (
               <div className="my-2 rounded-xl w-[50%] h-6 animate-pulse bg-gray-300"></div>
-            )}
+            )} */}
           </div>
         </div>
 
@@ -467,7 +483,7 @@ const Home = () => {
             className="bg-red-500/80 text-white px-4 rounded-xl text-lg font-medium outline hover:bg-red-500 py-1 flex gap-2 sm:w-fit"
           >
             <img src={iconFilter} alt="" width={20} />
-            <p className="">Filters</p>
+            <p className="">{t('filters')}</p>
           </button>
 
           {filters.price_min ? (

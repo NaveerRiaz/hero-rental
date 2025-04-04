@@ -5,12 +5,19 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import logo from "/src/assets/images/logo.png";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import WhatsAppButton from "../Components/WhatsAppButton";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
   const navigate = useNavigate();
   const { hash } = useLocation();
   const [scroll, setScroll] = useState(0);
-  
+  const { t, i18n } = useTranslation();
+  const faqItems = t("faqs_items.items", { returnObjects: true });
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    document.dir = lng === "ar" ? "rtl" : "ltr"; // Set RTL for Arabic
+  };
 
   useEffect(() => {
     if (hash) {
@@ -35,9 +42,25 @@ const About = () => {
     <>
       <div id="navigation"></div>
 
-      <Link to={"/"}>
-        <img src={logo} width="175" alt="" className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"/>
-      </Link>
+      {/* <Link to={"/"}>
+        <img
+          src={logo}
+          width="175"
+          alt=""
+          className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
+        />
+      </Link> */}
+
+      {/* navigation bar */}
+      <div id="navigation" className="relative w-full">
+        <Link to={"/"}>
+          <img
+            src={logo}
+            width="175"
+            alt=""
+            className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
+          />
+        </Link>
 
         {/* navigation bar */}
         <div
@@ -46,9 +69,13 @@ const About = () => {
           }`}
         >
           <Link to={"/"}>
-            <img src={logo} width="175" alt="" className="fixed left-20 top-5" />
+            <img
+              src={logo}
+              width="175"
+              alt=""
+              className="fixed left-20 top-5"
+            />
           </Link>
-
           <ul
             className={`flex gap-12 text-lg font-medium max-auto ${
               scroll > 0 ? "text-black" : "text-black"
@@ -56,71 +83,89 @@ const About = () => {
           >
             <li>
               <Link className="hover:text-red-600" to="/#navigation">
-                Home
+                {t("home")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#navigation">
-                About Us
+                {t("about")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#faqs">
-                FAQs
+                {t("FAQs")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/#vehicles">
-                Vehicles
+                {t("vehicles")}
               </Link>
             </li>
           </ul>
 
-
+          <div className={`fixed right-20 flex gap-4`}>
+            <div>
+              {i18n.language === "ar" ? (
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("en")}
+                >
+                  English
+                </button>
+              ) : (
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("ar")}
+                >
+                  العربية
+                </button>
+              )}
+            </div>
+          </div>
         </div>
+
+        {/* hamburger menu */}
+        <HamburgerMenu />
+
+        <WhatsAppButton />
+
+        {/* <img
+          className="w-full top-0 absolute -z-10 opacity h-screen object-cover"
+          src={HeroImage}
+          alt=""
+        /> */}
+
+        {/* <div className="absolute top-[10%] w-full flex items-center justify-center">
+          <p className="text-6xl font-medium text-black text-center">Find Your
+          <span className="text-red-700 text-6xl font-bold mx-3">
+            Perfect Ride
+          </span>
+          in Dubai</p>
+        </div> */}
+      </div>
 
       {/* hamburger menu */}
       <HamburgerMenu />
 
       {/* Whatsapp button */}
-      <WhatsAppButton/>
+      <WhatsAppButton />
 
       <div className="flex lg:flex-row sm:flex-col flex-col-reverse text-black lg:mt-40 sm:mt-20 mt-12 w-full">
         <div className="flex flex-col w-full gap-8 px-6 sm:px-12">
-          <h1 className="text-5xl font-bold ">About Us</h1>
+          <h1 className="text-5xl font-bold ">{t("about_us")}</h1>
           <p className="text-lg text-gray-700 font-medium">
-            At Hero Car Rental, we are dedicated to providing our customers with
-            the best car rental experience in Dubai. With a wide range of
-            vehicles to choose from, competitive prices, and exceptional
-            customer service, we strive to make your rental experience as smooth
-            and stress-free as possible.
+            {t("about_us_text_1")}
           </p>
 
-          <p className="text-gray-700">
-            Our fleet of cars includes everything from economy cars to luxury
-            vehicles, so whether you’re traveling for business or pleasure, we
-            have the perfect car to suit your needs. We also offer a variety of
-            rental options, including short-term and long-term rentals, daily,
-            weekly and monthly rentals, to accommodate your specific needs.
-          </p>
+          <p className="text-gray-700">{t("about_us_text_2")}</p>
 
           <div className="px-4 border-left border-l-4 border-l-red-400">
             <p className="sm:w-[70%] w-full text-gray-700 font-medium text-lg">
-              At Hero Car Rental, we understand that your time is valuable,
-              that's why we offer 24/7 customer support to assist you with any
-              questions or concerns you may have. Our team of experts will guide
-              you through the rental process and ensure that you have a pleasant
-              and enjoyable experience.
+              {t("about_us_text_3")}
             </p>
           </div>
 
-          <p className="text-gray-700">
-            We are committed to providing our customers with the highest level
-            of service and ensure that all our vehicles are well maintained and
-            in excellent condition. Our goal is to make your car rental
-            experience as convenient and hassle-free as possible, so you can
-            focus on enjoying your trip to Dubai.
-          </p>
+          <p className="text-gray-700">{t("about_us_text_4")}</p>
         </div>
 
         <div className="sm:p-12 p-6">
@@ -188,62 +233,27 @@ const About = () => {
         className="flex flex-col my-20 lg:mx-20 sm:mx-12 mx-2 bg-gray-300 rounded-3xl lg:px-20 sm:px-12 px-4 py-6 gap-4"
       >
         <h1 className="sm:text-5xl text-4xl font-bold w-full text-center my-8">
-          Frequently Asked Questions
+          {t("faqs_items.title")}
         </h1>
 
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 lg:px-8">
           <div className="flex flex-col gap-4 w-full mx-auto">
-            <FAQsCard
-              question={"Do you offer any sort of warranty?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"When should I get my oil changed?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"How do I check my tire pressure?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"How often should I rotate my tires?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
+            {faqItems.slice(0, 4).map((item, idx) => (
+              <FAQsCard
+                key={idx}
+                question={item.question}
+                answer={item.answer}
+              />
+            ))}
           </div>
-
           <div className="flex flex-col gap-4 w-full mx-auto">
-            <FAQsCard
-              question={"What is Auto Detailing?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"Is it urgent to fix an oil leak?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"What causes brake pulsation?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
-            <FAQsCard
-              question={"Why is it important to rotate tires?"}
-              answer={
-                "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
-              }
-            />
+            {faqItems.slice(4).map((item, idx) => (
+              <FAQsCard
+                key={idx + 4}
+                question={item.question}
+                answer={item.answer}
+              />
+            ))}
           </div>
         </div>
 
@@ -251,7 +261,7 @@ const About = () => {
           onClick={() => navigate("/")}
           className="hover:bg-red-400 w-fit rounded-lg p-4 mx-auto my-8 bg-red-500 text-white text-lg font-medium"
         >
-          Learn More
+          {t("faqs_items.learnMore")}
         </button>
       </div>
 
