@@ -503,7 +503,7 @@ const Home = () => {
                 : "flex py-2 justify-center items-center w-full rounded-lg outline hover:bg-red-400 hover:outline-red-400"
             }
           >
-            <p className="font-medium">Luxury</p>
+            <p className="font-medium">{t("luxury")}</p>
           </div>
           <div
             onClick={() => selectCarType("economy")}
@@ -513,7 +513,7 @@ const Home = () => {
                 : "flex py-2 justify-center items-center w-full rounded-lg outline hover:bg-red-400 hover:outline-red-400"
             }
           >
-            <p className="font-medium">Economy</p>
+            <p className="font-medium">{t("economy")}</p>
           </div>
         </div>
       </div>
