@@ -1,7 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {formatCurrency, formatNumber} from "../utils";
+import { useTranslation } from "react-i18next";
 
 const VehicleListingCard = ({ item }) => {
+
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
   return (
     <div
@@ -21,17 +26,17 @@ const VehicleListingCard = ({ item }) => {
 
         {item.Car_model && (
           <div className="bg-red-500/80 absolute top-5 left-5 rounded-xl px-3 py-2">
-            <p className="font-medium text-3xl text-white">{item.Car_model}</p>
+            <p className="font-medium text-3xl text-white">{formatNumber(item.Car_model, i18n.language)}</p>
           </div>
         )}
       </div>
       <div className="py-4 px-6">
-        <p className="text-3xl font-medium">{item.Car_name}</p>
+        <p className="text-3xl font-medium">{i18n.language == "ar" ? item.Arabic_name : item.Car_name}</p>
         <p className="text-2xl w-full text-red-500 font-medium">
-          {item.Car_price ? `AED ${item.Car_price} per day` : "Call to confirm"}
+          {item.Car_price ? `${formatCurrency(item.Car_price, i18n.language)} ${t("per_day")}` : "Call to confirm"}
         </p>
         <p className="text-2xl text-gray-500">
-          {item.Car_seats ? `${item.Car_seats.split(" ")[0]} Doors` : ""}{" "}
+          {item.Car_seats ? `${formatNumber(item.Car_seats.split(" ")[0], i18n.language)} ${t("doors")}` : ""}{" "}
         </p>
       </div>
     </div>

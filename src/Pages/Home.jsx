@@ -11,6 +11,7 @@ import HamburgerMenu from "../Components/HamburgerMenu";
 import VehicleListingCard from "../Components/VehicleListingCard";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import { useTranslation } from "react-i18next";
+import HeroVideo from "/src/assets/hero-video-optimized.mp4";
 
 const images = [
   "/src/assets/images/logo-audi.png",
@@ -53,8 +54,6 @@ const Home = () => {
   }, [hash]);
 
   const applyFilters = () => {
-    // console.log(filts);
-
     if (priceMin !== "" && priceMax !== "")
       setFilters((prev) => {
         return { ...prev, price_min: priceMin, price_max: priceMax };
@@ -74,6 +73,7 @@ const Home = () => {
     setFilters(filteredObj);
   };
 
+  // handles scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -122,7 +122,10 @@ const Home = () => {
     });
   };
 
+  // get data from firebase
   useEffect(() => {
+    document.dir = i18n.language === "ar" ? "rtl" : "ltr";
+
     getData(db).then((data) => {
       if (!countEconomyCars) {
         const luxury_cars = data.reduce((acc, item) => {
@@ -205,31 +208,33 @@ const Home = () => {
                 <div className="h-[80vh] overflow-y-scroll">
                   {/* price range */}
                   <div className="gap-1 flex flex-col">
-                    <h1 className="text-xl font-medium">Price per day</h1>
+                    <h1 className="text-xl font-medium">
+                      {t("price_per_day")}
+                    </h1>
 
                     <div className="w-full flex gap-4 justify-center h-[40px]">
                       <div className="flex bg-gray-200 px-2 py-1 rounded-lg items-center w-full">
                         <input
                           id="price-min"
-                          placeholder="From"
+                          placeholder={t("from")}
                           type="text"
                           className="bg-inherit focus:outline-none w-full"
                           onChange={(e) => setPriceMin(e.target.value)}
                           value={priceMin || null}
                         />
-                        <p className="">AED</p>
+                        <p className="">{t("aed")}</p>
                       </div>
 
                       <div className="flex bg-gray-200 px-2 py-1 rounded-lg items-center w-full">
                         <input
                           id="price-max"
-                          placeholder="To"
+                          placeholder={t("to")}
                           type="text"
                           className="bg-inherit focus:outline-none w-full"
                           onChange={(e) => setPriceMax(e.target.value)}
                           value={priceMax || ""}
                         />
-                        <p className="">AED</p>
+                        <p className="">{t("aed")}</p>
                       </div>
                     </div>
                   </div>
@@ -238,7 +243,7 @@ const Home = () => {
                   <div className="w-[90%] h-[2px] bg-gray-200 my-8 mx-auto"></div>
 
                   {/* class */}
-                  <h1 className="text-xl font-medium">Class</h1>
+                  <h1 className="text-xl font-medium">{t("class")}</h1>
                   <ul className="text-lg ">
                     <div className="flex gap-2 hover:text-red-300 hover:cursor-pointer">
                       <input
@@ -247,7 +252,7 @@ const Home = () => {
                         checked={vehicleType === "luxury"}
                         className=""
                       ></input>
-                      <p className="">Luxury</p>
+                      <p className="">{t("luxury")}</p>
                     </div>
                     <div className="flex gap-2 hover:text-red-300 hover:cursor-pointer">
                       <input
@@ -256,7 +261,7 @@ const Home = () => {
                         checked={vehicleType === "economy"}
                         className=""
                       ></input>
-                      <p className="">Economy</p>
+                      <p className="">{t("economy")}</p>
                     </div>
                   </ul>
 
@@ -264,7 +269,7 @@ const Home = () => {
                   <div className="w-[90%] h-[2px] bg-gray-200 my-8 mx-auto"></div>
 
                   {/* brand */}
-                  <h1 className="text-xl font-medium">Brand</h1>
+                  <h1 className="text-xl font-medium">{t("brand")}</h1>
                   <ul className="text-lg ">
                     {Object.entries(brands).map(([brandName, numberOfVehc]) => (
                       <div key={brandName} className="flex gap-2">
@@ -298,7 +303,7 @@ const Home = () => {
                   }}
                   className="text-lg font-medium bg-red-500 text-white hover:bg-red-200 hover:text-black outline outline-red-500 w-[80%] py-2 rounded-lg"
                 >
-                  Done
+                  {t("done")}
                 </button>
               </div>
             </div>
@@ -309,20 +314,40 @@ const Home = () => {
       )}
 
       {/* hero */}
-      <div id="navigation" className="relative w-full">
-        <Link to={"/"}>
+      <div id="navigation" className="relative w-full h-screen">
+        {/* logo for mobile + tab */}
+        <Link to={"/"} className="lg:hidden absolute top-0 w-full bg-black/50 z-10">
           <img
             src={logo}
             width="175"
             alt=""
-            className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
+            className="w-[150px] mx-auto my-4"
           />
         </Link>
 
-        {/* navigation bar */}
+        {/* language for mobile + tab */}
+        <div className={`absolute right-0 top-0 p-6 lg:hidden z-10 text-white`}>
+          {i18n.language === "ar" ? (
+            <button
+              className="hover:text-red-500 h-full"
+              onClick={() => changeLanguage("en")}
+            >
+              English
+            </button>
+          ) : (
+            <button
+              className="hover:text-red-500 h-full"
+              onClick={() => changeLanguage("ar")}
+            >
+              العربية
+            </button>
+          )}
+        </div>
+
+        {/* navigation bar for desktop */}
         <div
           className={`lg:flex hidden justify-center py-8 px-16 top-0 fixed items-center w-full z-10 ${
-            scroll > 0 ? "bg-white shadow-xl" : "bg-none"
+            scroll > 0 ? "bg-white shadow-xl" : "bg-black/50"
           }`}
         >
           <Link to={"/"}>
@@ -334,33 +359,37 @@ const Home = () => {
             />
           </Link>
           <ul
-            className={`flex gap-12 text-lg font-medium max-auto ${
-              scroll > 0 ? "text-black" : "text-black"
+            className={`flex gap-12 text-lg font-normal max-auto ${
+              scroll > 0 ? "text-black" : "text-white"
             }`}
           >
             <li>
               <Link className="hover:text-red-600" to="/#navigation">
-                {t('home')}
+                {t("home")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#navigation">
-                {t('about')}
+                {t("about")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#faqs">
-                {t('FAQs')}
+                {t("FAQs")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/#vehicles">
-                {t('vehicles')}
+                {t("vehicles")}
               </Link>
             </li>
           </ul>
 
-          <div className={`fixed right-20 flex gap-4 ${i18n.language === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+          <div
+            className={`fixed right-20 flex gap-4 ${
+              i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+            }`}
+          >
             <div className="outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
               <button
                 onClick={() => {
@@ -371,44 +400,61 @@ const Home = () => {
                 }}
                 className="text-ingerit px-4 py-2 focus:outline-none hover:cursor-pointer"
               >
-                {t('filters')}
+                {t("filters")}
               </button>
             </div>
-            <div>
+            <div className={`${scroll > 0 ? "text-black" : "text-white"}`}>
               {i18n.language === "ar" ? (
-                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("en")}>English</button>
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("en")}
+                >
+                  English
+                </button>
               ) : (
-                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("ar")}>العربية</button>
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("ar")}
+                >
+                  العربية
+                </button>
               )}
             </div>
           </div>
         </div>
 
-        {/* hamburger menu */}
+        {/* hamburger menu mobile + tab */}
         <HamburgerMenu />
 
         <WhatsAppButton />
 
-        {/* <img
-          className="w-full top-0 absolute -z-10 opacity h-screen object-cover"
-          src={HeroImage}
-          alt=""
-        /> */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="min-w-full min-h-full object-cover -z-10"
+        >
+          <source src={HeroVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        {/* <div className="absolute top-[10%] w-full flex items-center justify-center">
-          <p className="text-6xl font-medium text-black text-center">Find Your
-          <span className="text-red-700 text-6xl font-bold mx-3">
-            Perfect Ride
-          </span>
-          in Dubai</p>
-        </div> */}
+        <div className="absolute top-[20%] w-full flex items-center justify-center">
+          <p className="text-6xl font-medium text-white text-center">
+            {t("find_your")}
+            <span className="text-red-700 text-6xl font-bold mx-3">
+              {t("perfect_ride")}
+            </span>
+            {t("in_dubai")}
+          </p>
+        </div>
       </div>
 
       {/* select car type */}
       <div className="flex flex-col gap-12 w-full mt-20">
         <div className="flex rounded-lg h-20 bg-red-500/80 mx-12 justify-center items-center">
           <p className="lg:text-3xl text-xl font-semibold text-gray-100 animate-pulse text-center">
-            {t('sale4')}
+            {t("sale4")}
           </p>
         </div>
 
@@ -422,7 +468,7 @@ const Home = () => {
             }
           >
             <img src={LuxuryCar} className="w-full h-auto" alt="" />
-            <p className="text-3xl font-medium">{t('luxury')}</p>
+            <p className="text-3xl font-medium">{t("luxury")}</p>
             {/* {countLuxuryCars !== null ? (
               <p className="text-2xl">{countLuxuryCars} cars available</p>
             ) : (
@@ -439,7 +485,7 @@ const Home = () => {
             }
           >
             <img src={EconomyCar} className="w-full h-auto" alt="" />
-            <p className="text-3xl font-medium">{t('economy')}</p>
+            <p className="text-3xl font-medium">{t("economy")}</p>
             {/* {countEconomyCars !== null ? (
               <p className="text-2xl">{countEconomyCars} cars available</p>
             ) : (
@@ -483,7 +529,7 @@ const Home = () => {
             className="bg-red-500/80 text-white px-4 rounded-xl text-lg font-medium outline hover:bg-red-500 py-1 flex gap-2 sm:w-fit"
           >
             <img src={iconFilter} alt="" width={20} />
-            <p className="">{t('filters')}</p>
+            <p className="">{t("filters")}</p>
           </button>
 
           {filters.price_min ? (

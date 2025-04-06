@@ -6,6 +6,7 @@ import logo from "/src/assets/images/logo.png";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import { useTranslation } from "react-i18next";
+import { formatNumber } from "../utils";
 
 const About = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const About = () => {
   const [scroll, setScroll] = useState(0);
   const { t, i18n } = useTranslation();
   const faqItems = t("faqs_items.items", { returnObjects: true });
+  document.dir = i18n.language === "ar" ? "rtl" : "ltr";
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -52,7 +54,7 @@ const About = () => {
       </Link> */}
 
       {/* navigation bar */}
-      <div id="navigation" className="relative w-full">
+      <div id="navigation" className="relative">
         <Link to={"/"}>
           <img
             src={logo}
@@ -124,6 +126,14 @@ const About = () => {
           </div>
         </div>
 
+        <div className="absolute top-0 right-0 px-8 py-4 lg:hidden">
+              {i18n.language === "ar" ? (
+                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("en")}>English</button>
+              ) : (
+                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("ar")}>العربية</button>
+              )}
+      </div>
+
         {/* hamburger menu */}
         <HamburgerMenu />
 
@@ -187,10 +197,10 @@ const About = () => {
           />
 
           <div className="mt-10 flex flex-col gap-1 w-full text-center lg:text-start lg:px-4">
-            <h3 className="text-4xl font-bold ">Our client says</h3>
+            <h3 className="text-4xl font-bold ">{t("client_section_title")}</h3>
             <p className="text-red-500 text-3xl font-extrabold">"</p>
             <p className=" text-gray-700 italic w-full text-center">
-              Rented a car for a road trip, it was perfect! Highly recommend!
+              {t("client_feedback")}
             </p>
           </div>
         </div>
@@ -207,23 +217,23 @@ const About = () => {
       <div className="flex lg:flex-row flex-col gap-12 lg:gap-0 justify-between m-20">
         <div className="flex flex-col justify-center items-center lg:flex-row lg:px-12">
           <span className="text-5xl font-extrabold text-red-500 pl-4">10</span>
-          <span className="text-3xl font-bold px-4 w-[150px] text-center">
-            Years in Business
+          <span className="text-3xl font-bold px-4 w-[200px] text-center">
+            {t("years_in_business")}
           </span>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-12 justify-between lg:border-l max-sm:border-t border-t-gray-700 lg:border-l-gray-700 px-12 pt-8">
           <div className="flex flex-col gap-4 justify-center items-center w-full">
             <p className="text-5xl font-extrabold">2,000+</p>
-            <p className="text-red-500 text-xl">Customers</p>
+            <p className="text-red-500 text-xl">{t("customers")}</p>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
             <p className="text-5xl font-extrabold">4,500+</p>
-            <p className="text-red-500 text-xl">Cars Rented</p>
+            <p className="text-red-500 text-xl">{t("cars_rented")}</p>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
             <p className="text-5xl font-extrabold">≈100</p>
-            <p className="text-red-500 text-xl">Cars</p>
+            <p className="text-red-500 text-xl">{t("cars")}</p>
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ import WhatsAppButton from "../Components/WhatsAppButton";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { formatCurrency, formatNumber } from "../utils";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -23,6 +25,13 @@ const Details = () => {
   const [scroll, setScroll] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const { t, i18n } = useTranslation();
+  document.dir = i18n.language === "ar" ? "rtl" : "ltr"; // Set RTL for Arabic
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    document.dir = lng === "ar" ? "rtl" : "ltr"; // Set RTL for Arabic
+  };
 
   const navigate = useNavigate();
 
@@ -129,7 +138,6 @@ const Details = () => {
 
       setProcessing(false);
       notifySuccess();
-
     } catch (error) {
       setProcessing(false);
       notifyError();
@@ -161,6 +169,9 @@ const Details = () => {
       <div id="navigation"></div>
 
       <div className="relative w-full lg:h-screen">
+
+        {/* navigation bar */}
+        <div id="navigation" className="relative w-full">
         <Link to={"/"}>
           <img
             src={logo}
@@ -177,36 +188,81 @@ const Details = () => {
           }`}
         >
           <Link to={"/"}>
-            <img src={logo} width="175" alt="" className="fixed left-20 top-5" />
+            <img
+              src={logo}
+              width="175"
+              alt=""
+              className="fixed left-20 top-5"
+            />
           </Link>
-
           <ul
-            className={`flex gap-12 text-lg font-medium ${
+            className={`flex gap-12 text-lg font-medium max-auto ${
               scroll > 0 ? "text-black" : "text-black"
             }`}
           >
             <li>
               <Link className="hover:text-red-600" to="/#navigation">
-                Home
+                {t("home")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#navigation">
-                About Us
+                {t("about")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/about#faqs">
-                FAQs
+                {t("FAQs")}
               </Link>
             </li>
             <li>
               <Link className="hover:text-red-600" to="/#vehicles">
-                Vehicles
+                {t("vehicles")}
               </Link>
             </li>
           </ul>
+
+          <div className={`fixed right-20 flex gap-4`}>
+            <div>
+              {i18n.language === "ar" ? (
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("en")}
+                >
+                  English
+                </button>
+              ) : (
+                <button
+                  className="hover:text-red-500 h-full"
+                  onClick={() => changeLanguage("ar")}
+                >
+                  العربية
+                </button>
+              )}
+            </div>
+          </div>
         </div>
+
+        {/* hamburger menu */}
+        <HamburgerMenu />
+
+        <WhatsAppButton />
+
+        {/* <img
+          className="w-full top-0 absolute -z-10 opacity h-screen object-cover"
+          src={HeroImage}
+          alt=""
+        /> */}
+
+        {/* <div className="absolute top-[10%] w-full flex items-center justify-center">
+          <p className="text-6xl font-medium text-black text-center">Find Your
+          <span className="text-red-700 text-6xl font-bold mx-3">
+            Perfect Ride
+          </span>
+          in Dubai</p>
+        </div> */}
+      </div>
+
         {/* hamburger menu */}
         <HamburgerMenu />
 
@@ -217,11 +273,11 @@ const Details = () => {
           <>
             <div className="flex px-20 gap-4 py-4 relative max-lg:hidden lg:mt-24">
               <a href="/" className="text-gray-600 text-lg hover:text-black">
-                Home
+                {t("home")}
               </a>
               <p className="text-gray text-lg">-</p>
               <a href="/" className="text-gray-600 text-lg hover:text-black">
-                {car.Car_status}
+                {t(car.Car_status.toLowerCase())}
               </a>
               <p className="text-gray text-lg">-</p>
               <a href="/" className="text-gray-600 text-lg hover:text-black">
@@ -231,7 +287,7 @@ const Details = () => {
 
             <div className="flex px-20 gap-4 max-lg:flex-col max-lg:px-4 max-lg:my-20">
               <div className="flex flex-col lg:hidden">
-                <h1 className="text-3xl font-medium">{car.Car_name}</h1>
+                <h1 className="text-3xl font-medium">{i18n.language == "ar" ? car.Arabic_name : car.Car_name}</h1>
                 <div className="flex gap-2 items-center">
                   <p className="text-lg">{car.Car_model}</p>
                   <p className="text-lg">{car.Car_type}</p>
@@ -239,7 +295,7 @@ const Details = () => {
 
                 <p className="text-2xl font-bold text-red-500">
                   {car.Car_price
-                    ? `AED ${car.Car_price} per day`
+                    ? `${formatCurrency(car.Car_price, i18n.language)} ${t("per_day")}`
                     : "Contact for a price"}
                 </p>
               </div>
@@ -268,7 +324,7 @@ const Details = () => {
 
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2 max-lg:hidden">
-                  <h1 className="text-3xl font-medium">{car.Car_name}</h1>
+                  <h1 className="text-3xl font-medium">{i18n.language == "ar" ? car.Arabic_name : car.Car_name}</h1>
                   <div className="flex gap-2 items-center">
                     <p className="text-lg">{car.Car_model}</p>
                     <p className="text-lg">{car.Car_type}</p>
@@ -276,7 +332,7 @@ const Details = () => {
 
                   <p className="text-2xl font-bold text-red-500">
                     {car.Car_price
-                      ? `AED ${car.Car_price} per day`
+                      ? `${formatCurrency(car.Car_price, i18n.language)} ${t("per_day")}`
                       : "Contact for a price"}
                   </p>
                 </div>
@@ -284,7 +340,7 @@ const Details = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="flex justify-between gap-2 my-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
-                      <p className="font-medium">Name*</p>
+                      <p className="font-medium">{t("name")}*</p>
                       <input
                         id="name"
                         required
@@ -294,7 +350,7 @@ const Details = () => {
                       />
                     </div>
                     <div className="flex flex-col w-full">
-                      <p className="font-medium">Phone Number*</p>
+                      <p className="font-medium">{t("phone_number")}*</p>
                       <input
                         id="phone"
                         required
@@ -305,13 +361,13 @@ const Details = () => {
                     </div>
                   </div>
                   <div className="flex rounded-lg  justify-center items-center">
-          <p className="font-semibold text-red-500/80 animate-pulse text-center">
-          Book for 4 or more days and get an exclusive discount!
-          </p>
-        </div>
+                    <p className="font-semibold text-red-500/80 animate-pulse text-center">
+                      {t("sale4")}
+                    </p>
+                  </div>
                   <div className="flex justify-between gap-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
-                      <p className="font-medium">Date From*</p>
+                      <p className="font-medium">{t("date_from")}*</p>
                       <DatePicker
                         selected={startDate}
                         dateFormat="dd/MM/yyyy"
@@ -325,7 +381,7 @@ const Details = () => {
                       />
                     </div>
                     <div className="flex flex-col w-full">
-                      <p className="font-medium">Date To*</p>
+                      <p className="font-medium">{t("date_to")}*</p>
                       <DatePicker
                         selected={endDate}
                         dateFormat="dd/MM/yyyy"
@@ -344,32 +400,32 @@ const Details = () => {
                     disabled={processing}
                   >
                     {processing ? (
-                      <p className="animate-pulse">Please wait...</p>
+                      <p className="animate-pulse">{t("please_wait")}...</p>
                     ) : (
-                      "Send enquiry"
+                      t("send_enquiry")
                     )}
                   </button>
                 </form>
 
                 <div className="bg-gray-300 w-full rounded-xl p-4 flex flex-col gap-1">
                   <div className="flex">
-                    <span className="font-medium">Make:</span>
+                    <span className="font-medium">{t("make")}:</span>
                     <span className="px-2">{car.Car_brand}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium">Model:</span>
+                    <span className="font-medium">{t("model")}:</span>
                     <span className="px-2">{car.Car_model}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium">Colour:</span>
+                    <span className="font-medium">{t("colour")}:</span>
                     <span className="px-2">{car.Car_colour}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium">Type:</span>
+                    <span className="font-medium">{t("type")}:</span>
                     <span className="px-2">{car.Car_type}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium">Doors:</span>
+                    <span className="font-medium">{t("doors")}:</span>
                     <span className="px-2">{car.Car_seats}</span>
                   </div>
                 </div>
@@ -378,7 +434,7 @@ const Details = () => {
           </>
         ) : (
           <div className="flex w-full h-screen items-center justify-center">
-            <p className="text-3xl font-medium">Loading...</p>
+            <p className="text-3xl font-medium">{t("loading")}...</p>
           </div>
         )}
       </div>

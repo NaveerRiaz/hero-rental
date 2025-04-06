@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [t, i18n] = useTranslation();
 
   return (
     <>
@@ -61,22 +63,22 @@ const HamburgerMenu = () => {
           >
             <li onClick={() => setIsOpen(false)}>
               <Link className="hover:text-red-600" to="/#navigation">
-                Home
+                {t("home")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
               <Link className="hover:text-red-600" to="/about#navigation">
-                About Us
+                {t("about_us")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
               <Link className="hover:text-red-600" to="/about#faqs">
-                FAQs
+                {t("FAQs")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
               <Link className="hover:text-red-600" to="/#vehicles">
-                Vehicles
+                {t("vehicles")}
               </Link>
             </li>
           </ul>
@@ -84,7 +86,7 @@ const HamburgerMenu = () => {
 
         {/* Footer */}
         <footer className="absolute bottom-0 w-full p-4 text-center text-gray-500">
-          <p>&copy; 2025. All rights reserved</p>
+          <p>{t('copyright_head')} &copy; {t('copyright_tail')}</p>
         </footer>
 
         

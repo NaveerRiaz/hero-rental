@@ -1,0 +1,73 @@
+{
+  "translation": {
+    "home": "Home",
+    "about": "About",
+    "FAQs": "FAQs",
+    "vehicles": "Vehicles",
+    "filters": "Filters",
+    "luxury": "Luxury",
+    "economy": "Economy",
+    "sale4": "Book for 4 or more days and get an exclusive discount!",
+    "whatsapp": "How can we help you?",
+    "faqs_items": {
+      "title": "Frequently Asked Questions",
+      "learnMore": "Learn More",
+      "items": [
+        {
+          "question": "Do you offer any sort of warranty?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "When should I get my oil changed?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "How do I check my tire pressure?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "How often should I rotate my tires?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "What is Auto Detailing?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "Is it urgent to fix an oil leak?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "What causes brake pulsation?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        },
+        {
+          "question": "Why is it important to rotate tires?",
+          "answer": "We can help with your financing plan, we can offer some tips and tricks. Drive off with this dream car of yours regardless of your credit history."
+        }
+      ]
+    },
+    "about_us": "About Us",
+    "about_us_text_1": "At Hero Car Rental, we are dedicated to providing our customers with the best car rental experience in Dubai. With a wide range of vehicles to choose from, competitive prices, and exceptional customer service, we strive to make your rental experience as smooth and stress-free as possible.",
+    "about_us_text_2": "Our fleet of cars includes everything from economy cars to luxury vehicles, so whether you’re traveling for business or pleasure, we have the perfect car to suit your needs. We also offer a variety of rental options, including short-term and long-term rentals, daily, weekly and monthly rentals, to accommodate your specific needs.",
+    "about_us_text_3": "At Hero Car Rental, we understand that your time is valuable, that's why we offer 24/7 customer support to assist you with any questions or concerns you may have. Our team of experts will guide you through the rental process and ensure that you have a pleasant and enjoyable experience.",
+    "about_us_text_4": "We are committed to providing our customers with the highest level of service and ensure that all our vehicles are well maintained and in excellent condition. Our goal is to make your car rental experience as convenient and hassle-free as possible, so you can focus on enjoying your trip to Dubai.",
+    "copyright_head": "Copyright",
+    "copyright_tail": "2025 All rights reserved",
+    "per_day": "per day",
+    "cars": "Cars",
+    "cars_rented": "Cars Rented",
+    "customers": "Customers",
+    "years_in_business": "Years in Business",
+    "address": "Abu Hail, Dubai UAE",
+    "done": "Done",
+    "price_per_day": "Price per day",
+    "class": "Class",
+    "brand": "Brand",
+    "from": "From",
+    "to": "To",
+    "aed": "AED",
+    "doors": "Doors",
+    "seats": "Seats"
+  }
+}
