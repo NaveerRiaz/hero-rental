@@ -38,6 +38,9 @@ const VehicleListingCard = ({ item }) => {
         <p className="text-2xl text-gray-500">
           {item.Car_seats ? `${formatNumber(item.Car_seats.split(" ")[0], i18n.language)} ${t("doors")}` : ""}{" "}
         </p>
+        <p className="text-2xl text-gray-500">
+          {item.Car_type ? t(item.Car_type.toLowerCase()): ""}{" "}
+        </p>
       </div>
     </div>
   );

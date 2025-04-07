@@ -169,99 +169,98 @@ const Details = () => {
       <div id="navigation"></div>
 
       <div className="relative w-full lg:h-screen">
-
         {/* navigation bar */}
         <div id="navigation" className="relative w-full">
-        <Link to={"/"}>
-          <img
-            src={logo}
-            width="175"
-            alt=""
-            className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
-          />
-        </Link>
-
-        {/* navigation bar */}
-        <div
-          className={`lg:flex hidden justify-center py-8 px-16 top-0 fixed items-center w-full z-10 ${
-            scroll > 0 ? "bg-white shadow-xl" : "bg-none"
-          }`}
-        >
           <Link to={"/"}>
             <img
               src={logo}
               width="175"
               alt=""
-              className="fixed left-20 top-5"
+              className="lg:hidden mx-auto sm:w-[150px] w-[100px] my-4"
             />
           </Link>
-          <ul
-            className={`flex gap-12 text-lg font-medium max-auto ${
-              scroll > 0 ? "text-black" : "text-black"
+
+          {/* navigation bar */}
+          <div
+            className={`lg:flex hidden justify-center py-8 px-16 top-0 fixed items-center w-full z-10 ${
+              scroll > 0 ? "bg-white shadow-xl" : "bg-none"
             }`}
           >
-            <li>
-              <Link className="hover:text-red-600" to="/#navigation">
-                {t("home")}
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-red-600" to="/about#navigation">
-                {t("about")}
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-red-600" to="/about#faqs">
-                {t("FAQs")}
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:text-red-600" to="/#vehicles">
-                {t("vehicles")}
-              </Link>
-            </li>
-          </ul>
+            <Link to={"/"}>
+              <img
+                src={logo}
+                width="175"
+                alt=""
+                className="fixed left-20 top-5"
+              />
+            </Link>
+            <ul
+              className={`flex gap-12 text-lg font-medium max-auto ${
+                scroll > 0 ? "text-black" : "text-black"
+              }`}
+            >
+              <li>
+                <Link className="hover:text-red-600" to="/#navigation">
+                  {t("home")}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-red-600" to="/about#navigation">
+                  {t("about")}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-red-600" to="/about#faqs">
+                  {t("FAQs")}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-red-600" to="/#vehicles">
+                  {t("vehicles")}
+                </Link>
+              </li>
+            </ul>
 
-          <div className={`fixed right-20 flex gap-4`}>
-            <div>
-              {i18n.language === "ar" ? (
-                <button
-                  className="hover:text-red-500 h-full"
-                  onClick={() => changeLanguage("en")}
-                >
-                  English
-                </button>
-              ) : (
-                <button
-                  className="hover:text-red-500 h-full"
-                  onClick={() => changeLanguage("ar")}
-                >
-                  العربية
-                </button>
-              )}
+            <div className={`fixed right-20 flex gap-4`}>
+              <div>
+                {i18n.language === "ar" ? (
+                  <button
+                    className="hover:text-red-500 h-full"
+                    onClick={() => changeLanguage("en")}
+                  >
+                    English
+                  </button>
+                ) : (
+                  <button
+                    className="hover:text-red-500 h-full"
+                    onClick={() => changeLanguage("ar")}
+                  >
+                    العربية
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* hamburger menu */}
-        <HamburgerMenu />
+          {/* hamburger menu */}
+          <HamburgerMenu />
 
-        <WhatsAppButton />
+          <WhatsAppButton />
 
-        {/* <img
+          {/* <img
           className="w-full top-0 absolute -z-10 opacity h-screen object-cover"
           src={HeroImage}
           alt=""
         /> */}
 
-        {/* <div className="absolute top-[10%] w-full flex items-center justify-center">
+          {/* <div className="absolute top-[10%] w-full flex items-center justify-center">
           <p className="text-6xl font-medium text-black text-center">Find Your
           <span className="text-red-700 text-6xl font-bold mx-3">
             Perfect Ride
           </span>
           in Dubai</p>
         </div> */}
-      </div>
+        </div>
 
         {/* hamburger menu */}
         <HamburgerMenu />
@@ -287,15 +286,19 @@ const Details = () => {
 
             <div className="flex px-20 gap-4 max-lg:flex-col max-lg:px-4 max-lg:my-20">
               <div className="flex flex-col lg:hidden">
-                <h1 className="text-3xl font-medium">{i18n.language == "ar" ? car.Arabic_name : car.Car_name}</h1>
+                <h1 className="text-3xl font-medium">
+                  {i18n.language == "ar" ? car.Arabic_name : car.Car_name}
+                </h1>
                 <div className="flex gap-2 items-center">
                   <p className="text-lg">{car.Car_model}</p>
-                  <p className="text-lg">{car.Car_type}</p>
+                  <p className="text-lg">{t(car.Car_type.toLowerCase())}</p>
                 </div>
 
                 <p className="text-2xl font-bold text-red-500">
                   {car.Car_price
-                    ? `${formatCurrency(car.Car_price, i18n.language)} ${t("per_day")}`
+                    ? `${formatCurrency(car.Car_price, i18n.language)} ${t(
+                        "per_day"
+                      )}`
                     : "Contact for a price"}
                 </p>
               </div>
@@ -324,20 +327,26 @@ const Details = () => {
 
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2 max-lg:hidden">
-                  <h1 className="text-3xl font-medium">{i18n.language == "ar" ? car.Arabic_name : car.Car_name}</h1>
+                  <h1 className="text-3xl font-medium">
+                    {i18n.language == "ar" ? car.Arabic_name : car.Car_name}
+                  </h1>
                   <div className="flex gap-2 items-center">
                     <p className="text-lg">{car.Car_model}</p>
-                    <p className="text-lg">{car.Car_type}</p>
+                    <p className="text-lg">{t(car.Car_type.toLowerCase())}</p>
                   </div>
 
                   <p className="text-2xl font-bold text-red-500">
                     {car.Car_price
-                      ? `${formatCurrency(car.Car_price, i18n.language)} ${t("per_day")}`
+                      ? `${formatCurrency(car.Car_price, i18n.language)} ${t(
+                          "per_day"
+                        )}`
                       : "Contact for a price"}
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit}>
+
+                  {/* name and phone */}
                   <div className="flex justify-between gap-2 my-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">{t("name")}*</p>
@@ -360,11 +369,29 @@ const Details = () => {
                       />
                     </div>
                   </div>
+
+                  {/* pickup location */}
+                  <div className="flex justify-between gap-2 my-2 max-lg:flex-col">
+                    <div className="flex flex-col w-full">
+                      <p className="font-medium">{t("pickup_location")}*</p>
+                      <input
+                        id="pickup"
+                        required
+                        className="rounded-lg px-2 py-1"
+                        type="text"
+                        placeholder={t("dubai")}
+                      />
+                    </div>
+                  </div>
+
+                  {/* sale banner */}
                   <div className="flex rounded-lg  justify-center items-center">
                     <p className="font-semibold text-red-500/80 animate-pulse text-center">
                       {t("sale4")}
                     </p>
                   </div>
+
+                  {/* dates */}
                   <div className="flex justify-between gap-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">
                       <p className="font-medium">{t("date_from")}*</p>

@@ -31,6 +31,7 @@ const Home = () => {
   const [priceMin, setPriceMin] = useState(null);
   const [priceMax, setPriceMax] = useState(null);
   const [brands, setBrands] = useState(null);
+  const [carTypes, setCarTypes] = useState(null);
   const [scroll, setScroll] = useState(0);
   const { hash } = useLocation();
   const [countLuxuryCars, setCountLuxuryCars] = useState(null);
@@ -122,11 +123,31 @@ const Home = () => {
     });
   };
 
+  const toggleTypeFilter = (carType) => {
+    setFilters((prev) => {
+      const updatedTypes = prev.types ? [...prev.types] : [];
+
+      if (updatedTypes.includes(carType)) {
+        return {
+          ...prev,
+          types: updatedTypes.filter((item) => item !== carType),
+        };
+      } else {
+        return { ...prev, types: [...updatedTypes, carType] };
+      }
+    });
+  };
+
   // get data from firebase
   useEffect(() => {
     document.dir = i18n.language === "ar" ? "rtl" : "ltr";
 
     getData(db).then((data) => {
+      if (carTypes === null) {
+        const uniqueCarTypes = [...new Set(data.map((item) => item.Car_type))];
+        setCarTypes(uniqueCarTypes);
+      }
+
       if (!countEconomyCars) {
         const luxury_cars = data.reduce((acc, item) => {
           if (item.Car_status && item.Car_status.toLowerCase() === "luxury") {
@@ -169,6 +190,13 @@ const Home = () => {
       if (filters.brands && filters.brands.length > 0) {
         filteredData = filteredData.filter((item) =>
           filters.brands.includes(item.Car_brand.toLowerCase())
+        );
+      }
+
+      // filter for types
+      if (filters.types && filters.types.length > 0) {
+        filteredData = filteredData.filter((item) =>
+          filters.types.includes(item.Car_type)
         );
       }
 
@@ -292,6 +320,32 @@ const Home = () => {
                       </div>
                     ))}
                   </ul>
+
+                  {/* spacer */}
+                  <div className="w-[90%] h-[2px] bg-gray-200 my-8 mx-auto"></div>
+
+                  {/* type */}
+                  <h1 className="text-xl font-medium">{t("car_type")}</h1>
+                  <ul className="text-lg ">
+                    {carTypes.map((carType, index) => (
+                      <div key={index} className="flex gap-2">
+                        <input
+                          type="checkbox"
+                          className=""
+                          onChange={() => toggleTypeFilter(carType)}
+                          checked={
+                            filters.types && filters.types.includes(carType)
+                          }
+                        ></input>
+                        <p
+                          className=" hover:text-red-500 hover:cursor-pointer"
+                          onClick={() => toggleTypeFilter(carType)}
+                        >
+                          {t(carType.toLowerCase())}
+                        </p>
+                      </div>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
@@ -316,7 +370,10 @@ const Home = () => {
       {/* hero */}
       <div id="navigation" className="relative w-full h-screen">
         {/* logo for mobile + tab */}
-        <Link to={"/"} className="lg:hidden absolute top-0 w-full bg-black/50 z-10">
+        <Link
+          to={"/"}
+          className="lg:hidden absolute top-0 w-full bg-black/50 z-10"
+        >
           <img
             src={logo}
             width="175"
@@ -558,6 +615,21 @@ const Home = () => {
                 <p className="w-fit">{`${brandName[0].toUpperCase()}${brandName.substring(
                   1
                 )}`}</p>
+                <img src="images/xmark-solid.svg" width={15} alt="" />
+              </div>
+            ))
+          ) : (
+            <></>
+          )}
+
+          {filters.types ? (
+            filters.types.map((carType, index) => (
+              <div
+                key={index}
+                onClick={() => toggleTypeFilter(carType)}
+                className="px-4 py-2 flex justify-between gap-4 outline outline-1 rounded-xl hover:bg-red-200 hover:cursor-pointer"
+              >
+                <p className="w-fit">{t(carType.toLowerCase())}</p>
                 <img src="images/xmark-solid.svg" width={15} alt="" />
               </div>
             ))
