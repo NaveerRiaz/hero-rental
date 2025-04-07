@@ -313,9 +313,7 @@ const Home = () => {
                           className=" hover:text-red-500 hover:cursor-pointer"
                           onClick={() => toggleBrandFilter(brandName)}
                         >
-                          {`${brandName[0].toUpperCase()}${brandName.substring(
-                            1
-                          )} (${numberOfVehc})`}
+                          {`${t(brandName.toLowerCase())} (${numberOfVehc})`}
                         </p>
                       </div>
                     ))}
@@ -612,9 +610,7 @@ const Home = () => {
                 onClick={() => toggleBrandFilter(brandName)}
                 className="px-4 py-2 flex justify-between gap-4 outline outline-1 rounded-xl hover:bg-red-200 hover:cursor-pointer"
               >
-                <p className="w-fit">{`${brandName[0].toUpperCase()}${brandName.substring(
-                  1
-                )}`}</p>
+                <p className="w-fit">{t(brandName.toLowerCase())}</p>
                 <img src="images/xmark-solid.svg" width={15} alt="" />
               </div>
             ))

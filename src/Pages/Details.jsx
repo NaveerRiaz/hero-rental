@@ -170,7 +170,7 @@ const Details = () => {
 
       <div className="relative w-full lg:h-screen">
         {/* navigation bar */}
-        <div id="navigation" className="relative w-full">
+        <div id="navigation" className="relative">
           <Link to={"/"}>
             <img
               src={logo}
@@ -240,6 +240,24 @@ const Details = () => {
                 )}
               </div>
             </div>
+          </div>
+
+          <div className="absolute top-0 right-0 px-8 py-4 lg:hidden">
+            {i18n.language === "ar" ? (
+              <button
+                className="hover:text-red-500 h-full"
+                onClick={() => changeLanguage("en")}
+              >
+                English
+              </button>
+            ) : (
+              <button
+                className="hover:text-red-500 h-full"
+                onClick={() => changeLanguage("ar")}
+              >
+                العربية
+              </button>
+            )}
           </div>
 
           {/* hamburger menu */}
@@ -345,7 +363,6 @@ const Details = () => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-
                   {/* name and phone */}
                   <div className="flex justify-between gap-2 my-2 max-lg:flex-col">
                     <div className="flex flex-col w-full">

@@ -35,9 +35,9 @@ const VehicleListingCard = ({ item }) => {
         <p className="text-2xl w-full text-red-500 font-medium">
           {item.Car_price ? `${formatCurrency(item.Car_price, i18n.language)} ${t("per_day")}` : "Call to confirm"}
         </p>
-        <p className="text-2xl text-gray-500">
+        {/* <p className="text-2xl text-gray-500">
           {item.Car_seats ? `${formatNumber(item.Car_seats.split(" ")[0], i18n.language)} ${t("doors")}` : ""}{" "}
-        </p>
+        </p> */}
         <p className="text-2xl text-gray-500">
           {item.Car_type ? t(item.Car_type.toLowerCase()): ""}{" "}
         </p>

@@ -127,12 +127,22 @@ const About = () => {
         </div>
 
         <div className="absolute top-0 right-0 px-8 py-4 lg:hidden">
-              {i18n.language === "ar" ? (
-                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("en")}>English</button>
-              ) : (
-                <button className="hover:text-red-500 h-full" onClick={() => changeLanguage("ar")}>العربية</button>
-              )}
-      </div>
+          {i18n.language === "ar" ? (
+            <button
+              className="hover:text-red-500 h-full"
+              onClick={() => changeLanguage("en")}
+            >
+              English
+            </button>
+          ) : (
+            <button
+              className="hover:text-red-500 h-full"
+              onClick={() => changeLanguage("ar")}
+            >
+              العربية
+            </button>
+          )}
+        </div>
 
         {/* hamburger menu */}
         <HamburgerMenu />
