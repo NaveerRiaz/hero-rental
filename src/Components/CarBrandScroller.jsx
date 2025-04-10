@@ -1,16 +1,17 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-const images = [
-  "/src/assets/images/logo-audi.png",
-  "/src/assets/images/logo-bmw.png",
-  "/src/assets/images/logo-toyota.png",
-  "/src/assets/images/logo-nissan.png",
-  "/src/assets/images/logo-land-rover.png",
-  "/src/assets/images/logo-bentley.png",
-  "/src/assets/images/logo-kia.png",
-];
 
 const CarBrandScroller = () => {
+
+  const images = [
+    "/src/assets/images/logo-audi.png",
+    "/src/assets/images/logo-bmw.png",
+    "/src/assets/images/logo-toyota.png",
+    "/src/assets/images/logo-nissan.png",
+    "/src/assets/images/logo-land-rover.png",
+    "/src/assets/images/logo-bentley.png",
+    "/src/assets/images/logo-kia.png",
+  ];
 
 const [t, i18n] = useTranslation();
 
