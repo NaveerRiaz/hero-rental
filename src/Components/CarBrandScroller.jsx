@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import logoAudi from "../assets/images/logo-audi.png";
-import logoBmw from "../assets/images/logo-bmw.png";
-import logoToyota from "../assets/images/logo-toyota.png";
-import logoNissan from "../assets/images/logo-nissan.png";
-import logoLandRover from "../assets/images/logo-land-rover.png";
-import logoBentley from "../assets/images/logo-bentley.png";
-import logoKia from "../assets/images/logo-kia.png";
+import logoAudi from "/src/assets/images/logo-audi.png";
+import logoBmw from "/src/assets/images/logo-bmw.png";
+import logoToyota from "/src/assets/images/logo-toyota.png";
+import logoNissan from "/src/assets/images/logo-nissan.png";
+import logoLandRover from "/src/assets/images/logo-land-rover.png";
+import logoBentley from "/src/assets/images/logo-bentley.png";
+import logoKia from "/src/assets/images/logo-kia.png";
 
 const CarBrandScroller = () => {
 
