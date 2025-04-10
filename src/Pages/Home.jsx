@@ -13,16 +13,7 @@ import RotatingCircle from "../Components/RotatingCircle";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import { useTranslation } from "react-i18next";
 import HeroVideo from "/src/assets/hero-video-optimized.mp4";
-
-const images = [
-  "/src/assets/images/logo-audi.png",
-  "/src/assets/images/logo-bmw.png",
-  "/src/assets/images/logo-toyota.png",
-  "/src/assets/images/logo-nissan.png",
-  "/src/assets/images/logo-land-rover.png",
-  "/src/assets/images/logo-bentley.png",
-  "/src/assets/images/logo-kia-white.png",
-];
+import CarBrandScroller from "../Components/CarBrandScroller";
 
 const Home = () => {
   const [vehicleType, setVehicleType] = useState(null);
@@ -507,6 +498,8 @@ const Home = () => {
 
         <RotatingCircle />
       </div>
+
+      <CarBrandScroller/>
 
       {/* select car type */}
       <div className="flex flex-col gap-12 w-full mt-20">
