@@ -29,7 +29,7 @@ const [t, i18n] = useTranslation();
           <img
             key={index}
             src={brand}
-            className="h-16 mx-8 inline-block"
+            className="h-16 lg:mx-8 mx-4 inline-block"
           />
         ))}
       </div>
