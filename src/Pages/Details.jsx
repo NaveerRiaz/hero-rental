@@ -298,7 +298,7 @@ const Details = () => {
               </a>
               <p className="text-gray text-lg">-</p>
               <a href="/" className="text-gray-600 text-lg hover:text-black">
-                {car.Car_brand}
+                {i18n.language === "ar" ? car.Brand_arabic : car.Car_brand}
               </a>
             </div>
 
@@ -454,23 +454,23 @@ const Details = () => {
                 <div className="bg-gray-300 w-full rounded-xl p-4 flex flex-col gap-1">
                   <div className="flex">
                     <span className="font-medium">{t("make")}:</span>
-                    <span className="px-2">{car.Car_brand}</span>
+                    <span className="px-2">{i18n.language === "ar" ? car.Brand_arabic : car.Car_brand}</span>
                   </div>
                   <div className="flex">
                     <span className="font-medium">{t("model")}:</span>
-                    <span className="px-2">{car.Car_model}</span>
+                    <span className="px-2">{formatNumber(car.Car_model, i18n.language)}</span>
                   </div>
                   <div className="flex">
                     <span className="font-medium">{t("colour")}:</span>
-                    <span className="px-2">{car.Car_colour}</span>
+                    <span className="px-2">{i18n.language === "ar" ? car.Color_ar : car.Car_colour}</span>
                   </div>
                   <div className="flex">
                     <span className="font-medium">{t("type")}:</span>
-                    <span className="px-2">{car.Car_type}</span>
+                    <span className="px-2">{t(car.Car_type.toLowerCase())}</span>
                   </div>
                   <div className="flex">
                     <span className="font-medium">{t("doors")}:</span>
-                    <span className="px-2">{car.Car_seats}</span>
+                    <span className="px-2">{formatNumber(car.Car_seats, i18n.language)}</span>
                   </div>
                 </div>
               </div>

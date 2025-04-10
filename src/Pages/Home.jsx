@@ -9,6 +9,7 @@ import logo from "/src/assets/images/logo.png";
 import iconFilter from "/images/sliders-solid.svg";
 import HamburgerMenu from "../Components/HamburgerMenu";
 import VehicleListingCard from "../Components/VehicleListingCard";
+import RotatingCircle from "../Components/RotatingCircle";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import { useTranslation } from "react-i18next";
 import HeroVideo from "/src/assets/hero-video-optimized.mp4";
@@ -448,9 +449,9 @@ const Home = () => {
             <div className="outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
               <button
                 onClick={() => {
-                  document
-                    .getElementById("vehicles")
-                    .scrollIntoView({ behavior: "smooth" });
+                  // document
+                  //   .getElementById("vehicles")
+                  //   .scrollIntoView({ behavior: "smooth" });
                   setShowFilters(true);
                 }}
                 className="text-ingerit px-4 py-2 focus:outline-none hover:cursor-pointer"
@@ -503,6 +504,8 @@ const Home = () => {
             {t("in_dubai")}
           </p>
         </div>
+
+        <RotatingCircle />
       </div>
 
       {/* select car type */}
