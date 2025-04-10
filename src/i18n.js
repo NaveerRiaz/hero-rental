@@ -239,7 +239,7 @@ i18n
           coupe: "رياضية",
           pickup_location: "موقع الاستلام",
           dubai: "دبي",
-          open: "فتح",
+          open: "مفتوح",
         },
       },
     },
