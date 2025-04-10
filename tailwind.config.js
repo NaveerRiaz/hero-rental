@@ -6,8 +6,8 @@ export default {
       animation: {
         'spin-slow': 'spin 10s linear infinite',
         'spin-slow-reverse': 'spin-reverse 10s linear infinite',
-        'scroll-right': 'scroll-right 12s linear infinite',
-        'scroll-left': 'scroll-left 12s linear infinite',
+        'scroll-right': 'scroll-right 10s linear infinite',
+        'scroll-left': 'scroll-left 10s linear infinite',
       },
       keyframes: {
         'spin-reverse': {
