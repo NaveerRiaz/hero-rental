@@ -84,22 +84,22 @@ const About = () => {
             }`}
           >
             <li>
-              <Link className="hover:text-red-600" to="/#navigation">
+              <Link className="hover:text-primary-600" to="/#navigation">
                 {t("home")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/about#navigation">
+              <Link className="hover:text-primary-600" to="/about#navigation">
                 {t("about")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/about#faqs">
+              <Link className="hover:text-primary-600" to="/about#faqs">
                 {t("FAQs")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/#vehicles">
+              <Link className="hover:text-primary-600" to="/#vehicles">
                 {t("vehicles")}
               </Link>
             </li>
@@ -109,14 +109,14 @@ const About = () => {
             <div>
               {i18n.language === "ar" ? (
                 <button
-                  className="hover:text-red-500 h-full"
+                  className="hover:text-primary-500 h-full"
                   onClick={() => changeLanguage("en")}
                 >
                   English
                 </button>
               ) : (
                 <button
-                  className="hover:text-red-500 h-full"
+                  className="hover:text-primary-500 h-full"
                   onClick={() => changeLanguage("ar")}
                 >
                   العربية
@@ -129,14 +129,14 @@ const About = () => {
         <div className="absolute top-0 right-0 px-8 py-4 lg:hidden">
           {i18n.language === "ar" ? (
             <button
-              className="hover:text-red-500 h-full"
+              className="hover:text-primary-500 h-full"
               onClick={() => changeLanguage("en")}
             >
               English
             </button>
           ) : (
             <button
-              className="hover:text-red-500 h-full"
+              className="hover:text-primary-500 h-full"
               onClick={() => changeLanguage("ar")}
             >
               العربية
@@ -208,7 +208,7 @@ const About = () => {
 
           <div className="mt-10 flex flex-col gap-1 w-full text-center lg:text-start lg:px-4">
             <h3 className="text-4xl font-bold ">{t("client_section_title")}</h3>
-            <p className="text-red-500 text-3xl font-extrabold">"</p>
+            <p className="text-primary-500 text-3xl font-extrabold">"</p>
             <p className=" text-gray-700 italic w-full text-center">
               {t("client_feedback")}
             </p>
@@ -226,7 +226,7 @@ const About = () => {
 
       <div className="flex lg:flex-row flex-col gap-12 lg:gap-0 justify-between m-20">
         <div className="flex flex-col justify-center items-center lg:flex-row lg:px-12">
-          <span className="text-5xl font-extrabold text-red-500 pl-4">10</span>
+          <span className="text-5xl font-extrabold text-primary-500 pl-4">10</span>
           <span className="text-3xl font-bold px-4 w-[200px] text-center">
             {t("years_in_business")}
           </span>
@@ -235,15 +235,15 @@ const About = () => {
         <div className="flex flex-col sm:flex-row gap-12 justify-between lg:border-l max-sm:border-t border-t-gray-700 lg:border-l-gray-700 px-12 pt-8">
           <div className="flex flex-col gap-4 justify-center items-center w-full">
             <p className="text-5xl font-extrabold">2,000+</p>
-            <p className="text-red-500 text-xl">{t("customers")}</p>
+            <p className="text-primary-500 text-xl">{t("customers")}</p>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
             <p className="text-5xl font-extrabold">4,500+</p>
-            <p className="text-red-500 text-xl">{t("cars_rented")}</p>
+            <p className="text-primary-500 text-xl">{t("cars_rented")}</p>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
             <p className="text-5xl font-extrabold">≈100</p>
-            <p className="text-red-500 text-xl">{t("cars")}</p>
+            <p className="text-primary-500 text-xl">{t("cars")}</p>
           </div>
         </div>
       </div>
@@ -279,7 +279,7 @@ const About = () => {
 
         <button
           onClick={() => navigate("/")}
-          className="hover:bg-red-400 w-fit rounded-lg p-4 mx-auto my-8 bg-red-500 text-white text-lg font-medium"
+          className="hover:bg-red-400 w-fit rounded-lg p-4 mx-auto my-8 bg-primary-500 text-white text-lg font-medium"
         >
           {t("faqs_items.learnMore")}
         </button>

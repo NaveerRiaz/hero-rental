@@ -223,7 +223,7 @@ i18n
           please_wait: "انتظر من فضلك",
           client_feedback: "استأجرتُ سيارةً لرحلةٍ برية، كانت مثالية! أنصح بها بشدة!",
           client_section_title: "يقول عميلنا",
-          find_your: "ابحث عن",
+          find_your: "احجز",
           perfect_ride: "سيارتك المثالية",
           in_dubai: "في دبي",
           car_type: "نوع السيارة",

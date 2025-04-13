@@ -11,7 +11,7 @@ const VehicleListingCard = ({ item }) => {
   return (
     <div
       onClick={() => navigate(`/details/${item.id}`)}
-      className="flex flex-col col-span-1 rounded-3xl bg-white shadow-xl gap-1 pb-4 hover:outline hover:outline-red-500 hover:cursor-pointer"
+      className="flex flex-col col-span-1 rounded-3xl bg-white shadow-xl gap-1 pb-4 hover:outline hover:outline-primary-500 hover:cursor-pointer"
     >
       <div className="w-full h-[300px] relative">
         <img
@@ -25,14 +25,14 @@ const VehicleListingCard = ({ item }) => {
         />
 
         {item.Car_model && (
-          <div className="bg-red-500/80 absolute top-5 left-5 rounded-xl px-3 py-2">
+          <div className="bg-primary-500/80 absolute top-5 left-5 rounded-xl px-3 py-2">
             <p className="font-medium text-3xl text-white">{formatNumber(item.Car_model, i18n.language)}</p>
           </div>
         )}
       </div>
       <div className="py-4 px-6">
         <p className="text-3xl font-medium">{i18n.language == "ar" ? item.Arabic_name : item.Car_name}</p>
-        <p className="text-2xl w-full text-red-500 font-medium">
+        <p className="text-2xl w-full text-primary-500 font-medium">
           {item.Car_price ? `${formatCurrency(item.Car_price, i18n.language)} ${t("per_day")}` : "Call to confirm"}
         </p>
         {/* <p className="text-2xl text-gray-500">

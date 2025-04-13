@@ -55,10 +55,14 @@ const Footer = () => {
 
           {/* social media + contact */}
           <div className="flex flex-col items-end justify-center gap-1">
-            <h1 className="text-red-500 text-3xl font-bold">
+            <h1 className="text-primary-500 text-3xl font-bold">
               <a href="tel:+971561382222" className={i18n.language === 'ar' ? 'flex flex-row-reverse' : 'flex'}>
                 <span>+</span>
                 <span>{formatNumber(971561382222, i18n.language)}</span>
+              </a>
+              <a href="tel:+97142992292" className={i18n.language === 'ar' ? 'flex flex-row-reverse' : 'flex'}>
+              <span>+</span>
+              <span>{formatNumber(97142992292, i18n.language)}</span>
               </a>
             </h1>
             <h1 className="text-white text-2xl font-medium">

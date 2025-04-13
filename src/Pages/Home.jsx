@@ -302,7 +302,7 @@ const Home = () => {
                           }
                         ></input>
                         <p
-                          className=" hover:text-red-500 hover:cursor-pointer"
+                          className=" hover:text-primary-500 hover:cursor-pointer"
                           onClick={() => toggleBrandFilter(brandName)}
                         >
                           {`${t(brandName.toLowerCase())} (${numberOfVehc})`}
@@ -328,7 +328,7 @@ const Home = () => {
                           }
                         ></input>
                         <p
-                          className=" hover:text-red-500 hover:cursor-pointer"
+                          className=" hover:text-primary-500 hover:cursor-pointer"
                           onClick={() => toggleTypeFilter(carType)}
                         >
                           {t(carType.toLowerCase())}
@@ -345,7 +345,7 @@ const Home = () => {
                     setShowFilters(false);
                     applyFilters();
                   }}
-                  className="text-lg font-medium bg-red-500 text-white hover:bg-red-200 hover:text-black outline outline-red-500 w-[80%] py-2 rounded-lg"
+                  className="text-lg font-medium bg-primary-500 text-white hover:bg-primary-500/80 w-[80%] py-2 rounded-lg"
                 >
                   {t("done")}
                 </button>
@@ -376,14 +376,14 @@ const Home = () => {
         <div className={`absolute right-0 top-0 p-6 lg:hidden z-10 text-white`}>
           {i18n.language === "ar" ? (
             <button
-              className="hover:text-red-500 h-full"
+              className="hover:text-primary-500 h-full"
               onClick={() => changeLanguage("en")}
             >
               English
             </button>
           ) : (
             <button
-              className="hover:text-red-500 h-full"
+              className="hover:text-primary-500 h-full"
               onClick={() => changeLanguage("ar")}
             >
               العربية
@@ -411,22 +411,22 @@ const Home = () => {
             }`}
           >
             <li>
-              <Link className="hover:text-red-600" to="/#navigation">
+              <Link className="hover:text-primary-600" to="/#navigation">
                 {t("home")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/about#navigation">
+              <Link className="hover:text-primary-600" to="/about#navigation">
                 {t("about")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/about#faqs">
+              <Link className="hover:text-primary-600" to="/about#faqs">
                 {t("FAQs")}
               </Link>
             </li>
             <li>
-              <Link className="hover:text-red-600" to="/#vehicles">
+              <Link className="hover:text-primary-600" to="/#vehicles">
                 {t("vehicles")}
               </Link>
             </li>
@@ -437,7 +437,7 @@ const Home = () => {
               i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
             }`}
           >
-            <div className="outline outline-2 text-white bg-red-500/80 rounded-lg hover:bg-red-500 px-4 hover:cursor-pointer">
+            <div className="text-white bg-primary-500/80 rounded-lg hover:bg-primary-500 px-4 hover:cursor-pointer">
               <button
                 onClick={() => {
                   // document
@@ -445,7 +445,7 @@ const Home = () => {
                   //   .scrollIntoView({ behavior: "smooth" });
                   setShowFilters(true);
                 }}
-                className="text-ingerit px-4 py-2 focus:outline-none hover:cursor-pointer"
+                className="text-inherit px-4 py-2 hover:cursor-pointer"
               >
                 {t("filters")}
               </button>
@@ -453,14 +453,14 @@ const Home = () => {
             <div className={`${scroll > 0 ? "text-black" : "text-white"}`}>
               {i18n.language === "ar" ? (
                 <button
-                  className="hover:text-red-500 h-full"
+                  className="hover:text-primary-500 h-full"
                   onClick={() => changeLanguage("en")}
                 >
                   English
                 </button>
               ) : (
                 <button
-                  className="hover:text-red-500 h-full"
+                  className="hover:text-primary-500 h-full"
                   onClick={() => changeLanguage("ar")}
                 >
                   العربية
@@ -489,7 +489,7 @@ const Home = () => {
         <div className="absolute top-[20%] w-full flex items-center justify-center">
           <p className="text-6xl font-medium text-white text-center">
             {t("find_your")}
-            <span className="text-red-700 text-6xl font-bold mx-3">
+            <span className="text-primary-700 text-6xl font-bold mx-3 leading-tight">
               {t("perfect_ride")}
             </span>
             {t("in_dubai")}
@@ -503,7 +503,7 @@ const Home = () => {
 
       {/* select car type */}
       <div className="flex flex-col gap-12 w-full mt-20">
-        <div className="flex rounded-lg h-20 bg-red-500/80 mx-12 justify-center items-center">
+        <div className="flex rounded-lg h-20 bg-primary-500/80 mx-12 justify-center items-center">
           <p className="lg:text-3xl text-xl font-semibold text-gray-100 animate-pulse text-center">
             {t("sale4")}
           </p>
@@ -550,7 +550,7 @@ const Home = () => {
             onClick={() => selectCarType("luxury")}
             className={
               vehicleType === "luxury"
-                ? "flex py-2 justify-center items-center w-full rounded-lg outline bg-red-500 text-white hover:bg-red-400 hover:outline-red-400"
+                ? "flex py-2 justify-center items-center w-full rounded-lg outline bg-primary-500 text-white hover:bg-red-400 hover:outline-red-400"
                 : "flex py-2 justify-center items-center w-full rounded-lg outline hover:bg-red-400 hover:outline-red-400"
             }
           >
@@ -560,7 +560,7 @@ const Home = () => {
             onClick={() => selectCarType("economy")}
             className={
               vehicleType === "economy"
-                ? "flex py-2 justify-center items-center w-full rounded-lg outline bg-red-500 hover:bg-red-400 hover:outline-red-400"
+                ? "flex py-2 justify-center items-center w-full rounded-lg outline bg-primary-500 hover:bg-red-400 hover:outline-red-400"
                 : "flex py-2 justify-center items-center w-full rounded-lg outline hover:bg-red-400 hover:outline-red-400"
             }
           >
@@ -577,7 +577,7 @@ const Home = () => {
             onClick={() => {
               setShowFilters(true);
             }}
-            className="bg-red-500/80 text-white px-4 rounded-xl text-lg font-medium outline hover:bg-red-500 py-1 flex gap-2 sm:w-fit"
+            className="bg-primary-500/80 text-white px-4 rounded-xl text-lg font-medium hover:bg-primary-500 py-1 flex gap-2 sm:w-fit"
           >
             <img src={iconFilter} alt="" width={20} />
             <p className="">{t("filters")}</p>

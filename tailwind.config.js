@@ -3,25 +3,32 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        primary: { 
+          500: "#d97706",
+          600: "#d97706",
+          700: "#b45309",
+        },
+      },
       animation: {
-        'spin-slow': 'spin 10s linear infinite',
-        'spin-slow-reverse': 'spin-reverse 10s linear infinite',
-        'scroll-right': 'scroll-right 10s linear infinite',
-        'scroll-left': 'scroll-left 10s linear infinite',
+        "spin-slow": "spin 10s linear infinite",
+        "spin-slow-reverse": "spin-reverse 10s linear infinite",
+        "scroll-right": "scroll-right 10s linear infinite",
+        "scroll-left": "scroll-left 10s linear infinite",
       },
       keyframes: {
-        'spin-reverse': {
-          from: { transform: 'rotate(360deg)' },
-          to: { transform: 'rotate(0deg)' },
+        "spin-reverse": {
+          from: { transform: "rotate(360deg)" },
+          to: { transform: "rotate(0deg)" },
         },
-        'scroll-right': {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
+        "scroll-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
         },
-        'scroll-left': {
-          '0%': { transform: 'translateX(50%)' },
-          '100%': { transform: 'translateX(0%)' },
-        }
+        "scroll-left": {
+          "0%": { transform: "translateX(50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
       },
     },
   },

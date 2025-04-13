@@ -200,22 +200,22 @@ const Details = () => {
               }`}
             >
               <li>
-                <Link className="hover:text-red-600" to="/#navigation">
+                <Link className="hover:text-primary-600" to="/#navigation">
                   {t("home")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-red-600" to="/about#navigation">
+                <Link className="hover:text-primary-600" to="/about#navigation">
                   {t("about")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-red-600" to="/about#faqs">
+                <Link className="hover:text-primary-600" to="/about#faqs">
                   {t("FAQs")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-red-600" to="/#vehicles">
+                <Link className="hover:text-primary-600" to="/#vehicles">
                   {t("vehicles")}
                 </Link>
               </li>
@@ -225,14 +225,14 @@ const Details = () => {
               <div>
                 {i18n.language === "ar" ? (
                   <button
-                    className="hover:text-red-500 h-full"
+                    className="hover:text-primary-500 h-full"
                     onClick={() => changeLanguage("en")}
                   >
                     English
                   </button>
                 ) : (
                   <button
-                    className="hover:text-red-500 h-full"
+                    className="hover:text-primary-500 h-full"
                     onClick={() => changeLanguage("ar")}
                   >
                     العربية
@@ -245,14 +245,14 @@ const Details = () => {
           <div className="absolute top-0 right-0 px-8 py-4 lg:hidden">
             {i18n.language === "ar" ? (
               <button
-                className="hover:text-red-500 h-full"
+                className="hover:text-primary-500 h-full"
                 onClick={() => changeLanguage("en")}
               >
                 English
               </button>
             ) : (
               <button
-                className="hover:text-red-500 h-full"
+                className="hover:text-primary-500 h-full"
                 onClick={() => changeLanguage("ar")}
               >
                 العربية
@@ -312,7 +312,7 @@ const Details = () => {
                   <p className="text-lg">{t(car.Car_type.toLowerCase())}</p>
                 </div>
 
-                <p className="text-2xl font-bold text-red-500">
+                <p className="text-2xl font-bold text-primary-500">
                   {car.Car_price
                     ? `${formatCurrency(car.Car_price, i18n.language)} ${t(
                         "per_day"
@@ -353,7 +353,7 @@ const Details = () => {
                     <p className="text-lg">{t(car.Car_type.toLowerCase())}</p>
                   </div>
 
-                  <p className="text-2xl font-bold text-red-500">
+                  <p className="text-2xl font-bold text-primary-500">
                     {car.Car_price
                       ? `${formatCurrency(car.Car_price, i18n.language)} ${t(
                           "per_day"
@@ -403,7 +403,7 @@ const Details = () => {
 
                   {/* sale banner */}
                   <div className="flex rounded-lg  justify-center items-center">
-                    <p className="font-semibold text-red-500/80 animate-pulse text-center">
+                    <p className="font-semibold text-primary-500/80 animate-pulse text-center">
                       {t("sale4")}
                     </p>
                   </div>
@@ -440,7 +440,7 @@ const Details = () => {
 
                   <button
                     type="submit"
-                    className="bg-red-500 text-white w-full rounded-lg py-1 my-4"
+                    className="bg-primary-500 text-white w-full rounded-lg py-1 my-4"
                     disabled={processing}
                   >
                     {processing ? (

@@ -8,7 +8,7 @@ const RotatingCircle = () => {
 
   return (
     <div className="absolute bottom-36 right-10">
-      <div className="relative w-32 h-32 rounded-full border-4 border-red-500 flex items-center justify-center overflow-visible">
+      <div className="relative w-32 h-32 rounded-full border-4 border-primary-500 flex items-center justify-center overflow-visible">
         {/* Rotating Text */}
         <div
           className={`absolute w-full h-full ${
@@ -27,7 +27,7 @@ const RotatingCircle = () => {
                    a 35,35 0 1,1 -70,0"
               />
             </defs>
-            <text fill="#ef4444" fontSize="16" fontWeight="bold">
+            <text fill="#d97706" fontSize="16" fontWeight="bold">
               <textPath href="#circlePath" startOffset="0%" direction="ltr">
 
                 {
@@ -41,7 +41,7 @@ const RotatingCircle = () => {
         </div>
 
         {/* Pulsing Center Text */}
-        <div className="text-red-500 text-2xl font-bold animate-pulse text-center">
+        <div className="text-primary-500 text-2xl font-bold animate-pulse text-center">
           {formatNumber(24, i18n.language)}/{formatNumber(7, i18n.language)}
         </div>
       </div>

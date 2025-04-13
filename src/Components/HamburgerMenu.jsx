@@ -11,7 +11,7 @@ const HamburgerMenu = () => {
       {/* Hamburger Icon */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-red-500/80 text-white lg:hidden"
+        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-primary-500/80 text-white lg:hidden"
       >
         {/* Hamburger Icon (SVG) */}
         <svg className="w-8 h-8" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
         {/* Close Button */}
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 p-2 rounded-md text-red-500"
+          className="absolute top-4 right-4 p-2 rounded-md text-primary-500"
         >
           {/* Close Icon (SVG) */}
           <svg className="w-8 h-8" viewBox="0 0 24 24">
@@ -62,22 +62,22 @@ const HamburgerMenu = () => {
             className={`flex flex-col gap-4 text-lg font-medium text-black`}
           >
             <li onClick={() => setIsOpen(false)}>
-              <Link className="hover:text-red-600" to="/#navigation">
+              <Link className="hover:text-primary-600" to="/#navigation">
                 {t("home")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
-              <Link className="hover:text-red-600" to="/about#navigation">
+              <Link className="hover:text-primary-600" to="/about#navigation">
                 {t("about_us")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
-              <Link className="hover:text-red-600" to="/about#faqs">
+              <Link className="hover:text-primary-600" to="/about#faqs">
                 {t("FAQs")}
               </Link>
             </li>
             <li onClick={() => setIsOpen(false)}>
-              <Link className="hover:text-red-600" to="/#vehicles">
+              <Link className="hover:text-primary-600" to="/#vehicles">
                 {t("vehicles")}
               </Link>
             </li>
