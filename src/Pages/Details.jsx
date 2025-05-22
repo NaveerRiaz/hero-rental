@@ -142,7 +142,7 @@ const Details = () => {
       setProcessing(false);
       notifyError();
     } finally {
-      window.open(`https://wa.me/971501683111`, "_blank");
+      window.open(`https://wa.me/971561382222`, "_blank");
     }
   };
 
